@@ -1,2 +1,0 @@
-# greatlakescode
-Website greatlakescode.us
