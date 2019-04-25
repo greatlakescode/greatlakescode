@@ -15,7 +15,7 @@ module.exports = {
             env: {
                 COMMON_VARIABLE: 'true',
                 "NODE_ENV": "prod",
-                "RUSSJ_PORT": "8206"
+                "GREATLAKESCODE_PORT": "8206"
 
             },
         },
@@ -32,7 +32,7 @@ module.exports = {
             env: {
                 COMMON_VARIABLE: 'true',
                 "NODE_ENV": "prod",
-                "RUSSJ_PORT": "8207"
+                "GREATLAKESCODE_PORT": "8207"
 
             },
         }

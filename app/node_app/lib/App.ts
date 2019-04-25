@@ -11,24 +11,6 @@ import SteamController from "./controllers/steam/SteamController";
 
 
 const express = require('express');
-// const winston = require('winston');
-// const logger = winston;
-// const TimeHelper = require(`./utils/TimeHelper`);
-//
-// let selftest,
-//     config,app,server;
-//
-// let SelfTest = require(`./tests/selftest.js`);
-// let ModuleChecker = require(`./utils/ModuleChecker`)
-
-//pm2 passed variables do not override.
-// process.env.CODERUSS_PORT = environmentVars.CODERUSS_PORT ||  process.env.CODERUSS_PORT;
-
-
-//splitting things up into there own npm modules is a little bit overkill.
-//I will be including the full api in the main lib but breaking it up into subdirectories
-//in a way that separates roles.
-// async function init
 export default class App {
 
     constructor(opts?) {
@@ -50,7 +32,7 @@ export default class App {
         const express = require('express');
         let app = express();
         this.app = app;
-        const port = process.env.CODERUSS_PORT || process.env.PORT || 3000;
+        const port = process.env.GREATLAKESCODE_PORT || process.env.PORT || 3000;
         this.port = port;
         this.basicAppSetup();
 //3000 for the main app testing locally, 4000 are reserved for standalone
