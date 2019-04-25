@@ -19,7 +19,7 @@ export default class HomeComponent extends BaseComponent {
 
         return (
             <div>
-                Hello greatlakescode.
+                Hello world.
             </div>
         )
     }
