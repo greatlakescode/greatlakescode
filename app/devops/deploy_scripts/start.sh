@@ -25,6 +25,8 @@ cd react_frontend
 pwd
 npm install
 
+
+#TODO build and then change symbolic link for zero downtime
 npm run build
 
 

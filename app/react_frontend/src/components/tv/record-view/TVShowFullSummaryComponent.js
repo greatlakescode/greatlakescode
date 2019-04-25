@@ -22,9 +22,18 @@ export default class TVShowFullSummaryComponent
 
     //https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#preferred-solutions
 
-    state = { show: this.props.show,
+    state = { show: [],
         loadingSeen: false
     };
+
+    constructor()
+    {
+        super();
+
+        this.state.show = this.props.show;
+    }
+
+
 
 
 
