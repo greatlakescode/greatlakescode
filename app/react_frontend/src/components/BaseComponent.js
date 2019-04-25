@@ -1,11 +1,9 @@
-import React, {Component} from 'react';
-import {
-    // browserHistory,
-    BrowserRouter as Router,
-    Redirect,
-    Route,
-    Link
-} from 'react-router-dom'
+import
+    // React
+    // ,
+{Component} from 'react';
+import MessageService from "../utils/MessageService";
+import RequestHelper from "../utils/RequestHelper";
 
 
 export default class BaseComponent extends Component {
@@ -16,10 +14,13 @@ export default class BaseComponent extends Component {
     };
     cancelled = false;
 
+    requestHelper = RequestHelper.getInstance(`profile`);
+
 
     constructor()
     {
         super();
+
 
     }
 
@@ -152,9 +153,15 @@ export default class BaseComponent extends Component {
             await this.handleFormSubmit(data);
         }
         catch (e) {
+            MessageService.error(`Unknown error. Failed to submit.`);
         }
     };
 
+    //cannot be overridden
+    // handleFormSubmit = async (data) => {
+    //     console.log(`BaseComponent->handleFormSubmit`,data);
+    //
+    // }
 
     //can be overridden
     async handleFormSubmit(data)
