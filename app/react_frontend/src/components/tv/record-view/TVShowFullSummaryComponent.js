@@ -10,6 +10,7 @@ import {
 import BaseComponent from "./../../BaseComponent";
 import MessageService from "../../../utils/MessageService";
 import RequestHelper from "../../../utils/RequestHelper";
+import ShowImageComponent from "./ShowImageComponent";
 
 
 export default class TVShowFullSummaryComponent
@@ -26,11 +27,13 @@ export default class TVShowFullSummaryComponent
         loadingSeen: false
     };
 
-    constructor()
+    constructor(props)
     {
-        super();
+        super(props);
 
-        this.state.show = this.props.show;
+        //this.props is undefined in the constructor.
+        console.log(`props`,props,this.props);
+        this.state.show = props.show;
     }
 
 
@@ -162,6 +165,8 @@ export default class TVShowFullSummaryComponent
     render()
     {
 
+        console.log(`props`,this.props);
+
         let show = this.show = this.state.show;
         // console.log(this.props);
 
@@ -230,6 +235,8 @@ export default class TVShowFullSummaryComponent
                 {previousepisdoehtml}
                 {nextepisodehtml}
 
+{/*                image.medium*/}
+<ShowImageComponent image={show.show.image}/>
 
                 {/*<pre>{JSON.stringify(this.props,null,' ')}</pre>*/}
         </div>)

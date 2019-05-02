@@ -23,14 +23,11 @@ export default class MyShowsComponent extends BaseComponent {
     requestHelper = RequestHelper.getInstance(`tv`);
 
 
-    constructor()
+    constructor(props)
     {
-        super();
+        super(props);
 
-        // this.state.weather = null;
-
-        this.state.myShows = null;
-
+        // this.state.myShows = null;
 
 
     }
@@ -84,7 +81,6 @@ export default class MyShowsComponent extends BaseComponent {
 
 
     render() {
-        let match = this.props.match;
 
 
         if (this.state.loading)
@@ -95,8 +91,6 @@ export default class MyShowsComponent extends BaseComponent {
             MessageService.warn(`Redirecting to login`);
             return (<Redirect to='/login' />);
         }
-
-        let search = 'search';
 
 
 
