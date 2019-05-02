@@ -7,7 +7,7 @@ module.exports = {
             //https://github.com/twitter/twemproxy/issues/6
             //this is forked meaning it should not have duplicate cron jobs
             //or create a way to lock running crons where duplicates should not be allowed.
-            name: 'greatlakescode',
+            name: 'russjohnsonio_app',
             "script": index,
             min_uptime: "1m",
             max_restarts: "10",
@@ -20,7 +20,7 @@ module.exports = {
             env: {
                 COMMON_VARIABLE: 'true',
                 "NODE_ENV": "prod",
-                "GREATLAKESCODE_PORT": "8205"
+                "RUSSJOHNSONIO_PORT": "8205"
             },
         }
     ]

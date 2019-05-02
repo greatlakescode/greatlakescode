@@ -1,2 +1,2 @@
-https://codeclimate.com/github/greatlakescode/greatlakescode/progress/coverage
+https://codeclimate.com/github/russjohnsonio/russjohnsonio/progress/coverage
 

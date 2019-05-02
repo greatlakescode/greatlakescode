@@ -3,7 +3,7 @@ let index = __dirname + './../../index.js';
 module.exports = {
     apps: [
         {
-            name: 'greatlakescode_backup_1',
+            name: 'russjohnsonio_backup_1',
             "script": index,
             min_uptime: "1m",
             max_restarts: "10",
@@ -15,12 +15,12 @@ module.exports = {
             env: {
                 COMMON_VARIABLE: 'true',
                 "NODE_ENV": "prod",
-                "GREATLAKESCODE_PORT": "8206"
+                "RUSSJOHNSONIO_PORT": "8206"
 
             },
         },
         {
-            name: 'greatlakescode_backup_2',
+            name: 'russjohnsoni_backup_2',
             "script": index,
             min_uptime: "1m",
             max_restarts: "10",
@@ -32,7 +32,7 @@ module.exports = {
             env: {
                 COMMON_VARIABLE: 'true',
                 "NODE_ENV": "prod",
-                "GREATLAKESCODE_PORT": "8207"
+                "RUSSJOHNSONIO_PORT": "8207"
 
             },
         }

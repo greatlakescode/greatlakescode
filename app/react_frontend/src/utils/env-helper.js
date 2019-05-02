@@ -17,7 +17,6 @@ class EnvHelper {
             return {
                 'API_URL': 'http://localhost:8000',
                 'DEBUG': false,
-                // 'API_URL': 'https://api.russlikesto.party'
             }
         }
     }
@@ -73,14 +72,14 @@ class EnvHelper {
             obj = {
                 default: {
                     protocol: 'https',
-                    domain: 'api.greatlakescode.us',
+                    domain: 'api.russjohnsonio.icu',
                 },
                 notes: {
                     api_endpoint:  '/api/notes-api',
                     // host: 'http://localhost:3000',
                     protocol: 'https',
                     // port: 3000, //leave blank if not required?
-                    domain: 'api.greatlakescode.us',
+                    domain: 'api.russjohnsonio.icu',
                 },
                 auth: {
                     // api_endpoint:  '/api/auth',
@@ -91,14 +90,14 @@ class EnvHelper {
                     // host: 'http://localhost:3000',
                     protocol: 'https',
                     // port: 3000, //leave blank if not required?
-                    domain: 'api.greatlakescode.us',
+                    domain: 'api.russjohnsonio.icu',
                 },
                 kanban: {
                     api_endpoint:  '/api/kanban',
                     // host: 'http://localhost:3000',
                     protocol: 'https',
                     // port: 3000, //leave blank if not required?
-                    domain: 'api.greatlakescode.us',
+                    domain: 'api.russjohnsonio.icu',
                 },
             };
         }

@@ -44,22 +44,6 @@ export default class SteamController
         this.steamService = await SteamService.initService({
             db: this.db
         });
-
-        // let steam_api_key = process.env.GREATLAKESCODE_STEAM_API_KEY;
-        //
-        // if (!steam_api_key)
-        // {
-        //     console.error(`steam_api_key required`);
-        //     process.exit(1);
-        // }
-        //
-        // this.steamService = new SteamService(
-        //     {
-        //         db: this.db,
-        //         steam_api_key
-        //     }
-        // );
-
     }
 
     async initRoutes()

@@ -28,9 +28,9 @@ export default class EmailBasedAuthController
 
         super(opts);
         //https://medium.com/@siddharthac6/json-web-token-jwt-the-right-way-of-implementing-with-node-js-65b8915d550e
-        this.jwt_secret = this.opts.JWT_SECRET || process.env.CODERUSS_EMAIL_BASED_AUTH_JWT_SECRET;
+        this.jwt_secret = this.opts.JWT_SECRET || process.env.RUSSJOHNSONIO_EMAIL_BASED_AUTH_JWT_SECRET;
         if (!this.jwt_secret) {
-            console.log(`process.env.CODERUSS_EMAIL_BASED_AUTH_JWT_SECRET must be set to a secure secret`);
+            console.log(`process.env.RUSSJOHNSONIO_EMAIL_BASED_AUTH_JWT_SECRET must be set to a secure secret`);
             process.exit(1);
         }
     }

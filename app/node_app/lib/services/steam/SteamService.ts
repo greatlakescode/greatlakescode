@@ -38,12 +38,12 @@ export default class SteamService
         super(opts);
 
         this.db = opts.db;
-        this.steam_api_key = opts.steam_api_key || process.env.GREATLAKESCODE_STEAM_API_KEY;
+        this.steam_api_key = opts.steam_api_key || process.env.RUSSJOHNSONIO_STEAM_API_KEY;
         this.app_list_update_expires = opts.app_list_update_expires
-            || process.env.GREATLAKESCODE_STEAM_APP_LIST_EXPIRES || DEFAULT_APP_LIST_UPDATE_EXPIRES;
+            || process.env.RUSSJOHNSONIO_STEAM_APP_LIST_EXPIRES || DEFAULT_APP_LIST_UPDATE_EXPIRES;
 
         this.app_details_update_expires = opts.app_details_update_expires
-            || process.env.GREATLAKESCODE_STEAM_APP_DETAILS_EXPIRES
+            || process.env.RUSSJOHNSONIO_STEAM_APP_DETAILS_EXPIRES
             || DEFAULT_APP_DETAILS_UPDATE_EXPIRES;
 
         this.steamAppCollection = this.db.collection(`steam_app`);

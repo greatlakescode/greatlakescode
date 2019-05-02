@@ -4,10 +4,9 @@ const fs = require('fs');
 export default class BaseFileWriter
 {
 
-    static baseDirectory = process.env._GREATLAKECODE_TMP_PATH;
+    static baseDirectory = process.env._RUSSJOHNSONIO_TMP_PATH;
 
 
-    //process.env._GREATLAKECODE_REPO_PATH.
     constructor(protected filename)
     {
 
@@ -18,23 +17,13 @@ export default class BaseFileWriter
     static async initSimpleFilename(simpleFilename,baseDirectory?)
     {
         let self = this;
-        baseDirectory = baseDirectory || process.env._GREATLAKECODE_TMP_PATH;
+        baseDirectory = baseDirectory || process.env._RUSSJOHNSONIO_TMP_PATH;
         console.log(`initSimpleFilename`,simpleFilename,baseDirectory);
         let filename = path.resolve(baseDirectory,simpleFilename);
 
         let obj = new self(filename);
 
         return obj;
-        // if (!this.filepath)
-        // {
-        //     this.filepath = process.env._GREATLAKECODE_TMP_PATH;
-        // }
-        //
-        // if (!this.filepath)
-        // {
-        //     console.error(`filepath is required`);
-        //     process.exit(1);
-        // }
     }
 
 
