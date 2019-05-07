@@ -1,0 +1,25 @@
+addons:
+  firefox: "latest"
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-4.8
+      - g++-4.8
+      - oracle-java8-set-default
+language: node_js
+before_install:
+  - sudo apt-get install frotz -y
+node_js:
+  - 8
+before_script:
+  - sleep 3
+env:
+  - X_TEST_ENV=1
+services:
+  - mongodb
+script:
+  - cd ./devops/
+cache:
+  directories:
+    - app/node_app/node_modules
