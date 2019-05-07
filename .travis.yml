@@ -9,7 +9,7 @@ addons:
       #- oracle-java8-set-default
 language: node_js
 before_install:
-  - sudo apt-get install frotz -y
+  #- sudo apt-get install frotz -y
 node_js:
   - 8
 before_script:
@@ -19,7 +19,9 @@ env:
 services:
   - mongodb
 script:
-  - ./devops/testing/run_tests.sh
+  - pwd
+  - ls
+  - ./app/devops/testing/run_tests.sh
 cache:
   directories:
     - app/node_app/node_modules
