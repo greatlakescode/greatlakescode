@@ -32,7 +32,7 @@ export default class App {
         const express = require('express');
         let app = express();
         this.app = app;
-        const port = process.env.RUSSJOHNSONIO_PORT || 3000;
+        const port = process.env.GREATLAKESCODE_PORT || 3000;
         console.log(`port ${port}`);
         this.port = port;
         this.basicAppSetup();

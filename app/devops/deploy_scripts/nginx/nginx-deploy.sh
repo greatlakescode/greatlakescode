@@ -4,8 +4,8 @@ dir="$(pwd)"
 cd $dir
 
 
-sudo cp "./russjohnsonio.icu.conf" "/etc/nginx/sites-available/russjohnsonio.icu.conf" -vvv
-sudo ln -s "/etc/nginx/sites-available/russjohnsonio.icu.conf" "/etc/nginx/sites-enabled/russjohnsonio.icu.conf" || true
+sudo cp "./greatlakescode.us.conf" "/etc/nginx/sites-available/greatlakescode.us.conf" -vvv
+sudo ln -s "/etc/nginx/sites-available/greatlakescode.us.conf" "/etc/nginx/sites-enabled/greatlakescode.us.conf" || true
 
 
 sudo service nginx restart
@@ -25,4 +25,4 @@ wait
 sleep 2
 
 
-cat /etc/nginx/sites-available/russjohnsonio.icu.conf
+cat /etc/nginx/sites-available/greatlakescode.us.conf

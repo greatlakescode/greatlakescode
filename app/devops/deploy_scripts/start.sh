@@ -15,8 +15,8 @@ npm install
 tsc
 cd pm2/prod
 pwd
-pm2 startOrGracefulReload russjohnsonio.pm2.config.js
-pm2 startOrGracefulReload russjohnsonio_backup.pm2.config.js
+pm2 startOrGracefulReload greatlakescode.pm2.config.js
+pm2 startOrGracefulReload greatlakescode_backup.pm2.config.js
 pwd
 
 cd $dir

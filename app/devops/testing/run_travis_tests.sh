@@ -20,7 +20,7 @@ tsc
 
 
 echo "start server"
-pm2 start pm2/travis/russjohnsonio.pm2.config.js
+pm2 start pm2/travis/greatlakescode.pm2.config.js
 
 
 echo "list pm2 servers"

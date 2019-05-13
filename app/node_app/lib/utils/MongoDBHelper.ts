@@ -7,7 +7,7 @@ export default class MongoDBHelper {
 
 
     public static mongoDbUrl = `mongodb://localhost:27017`;
-    public static defaultDBName = `russjohnsonio`;
+    public static defaultDBName = `greatlakescode`;
 
 
     public static async getDB(opts?: { url?, dbName? }):Promise<any> {
