@@ -13,7 +13,7 @@ before_install:
 node_js:
   - 8
 before_script:
-  - npm install -g pm2 typescript
+  - npm install -g pm2 typescript mocha
   - sleep 3
 env:
   - X_TEST_ENV=1
@@ -22,7 +22,7 @@ services:
 script:
   - pwd
   - ls
-  - ./app/devops/testing/run_tests.sh
+  - ./app/devops/testing/run_travis_tests.sh
 cache:
   directories:
     - app/node_app/node_modules
