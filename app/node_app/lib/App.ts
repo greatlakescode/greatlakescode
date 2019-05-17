@@ -27,7 +27,11 @@ export default class App {
 
     protected mongoDB;
 
+    protected start_date;
+
     async init() {
+
+        this.start_date = new Date();
 
         // BaseFileWriter
 
@@ -70,12 +74,13 @@ export default class App {
         await this.addAuthentication();
 
         //fallback authentication
-        await this.addBasicAuthentication();
+        // await this.addBasicAuthentication();
 
         app.use('*', function(req,res,next) {
            req.locals._User = new User(req.locals._user);
            next();
         });
+
 
 
         await (async function() {
@@ -157,6 +162,33 @@ export default class App {
 
         await this.addNotes();
 
+        await this.addPing();
+
+    }
+
+    async addPing()
+    {
+        let self = this;
+        function ping(req,res)
+        {
+            let server = self.getServerInfo();
+
+            return res.json({
+                server
+            });
+        }
+
+
+        this.app.use('/', ping);
+    }
+
+
+    getServerInfo()
+    {
+        return {
+            port: this.port,
+            start_date: this.start_date
+        }
     }
 
     async addWeather() {

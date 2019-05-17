@@ -27,4 +27,5 @@ echo "list pm2 servers"
 pm2 l
 
 
+cd ..
 mocha
