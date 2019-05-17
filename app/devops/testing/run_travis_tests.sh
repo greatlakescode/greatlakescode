@@ -26,6 +26,6 @@ pm2 start pm2/travis/greatlakescode.pm2.config.js
 echo "list pm2 servers"
 pm2 l
 
+npm run test
 
-cd ..
-mocha
+--mocha
