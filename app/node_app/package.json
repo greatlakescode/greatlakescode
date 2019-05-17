@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "nyc mocha",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "test-11": "mocha --reporter dot",
     "test-2": "nyc --reporter=html --reporter=text mocha",
-    "coverage": "nyc --reporter html --reporter text npm test",
+    "coverage-2": "nyc --reporter html --reporter text npm test",
     "coverage-report": "nyc report --reporter=text-lcov mocha",
-    "coverage-2": "nyc report --reporter=text-lcov | coveralls",
     "build:tsc": "tsc"
   },
   "author": "",
@@ -35,22 +35,17 @@
     "source-map-support": "^0.5.12"
   },
   "nyc": {
-    "include": [
-      "src/**/*.ts",
-      "src/**/*.tsx"
-    ],
     "extension": [
-      ".ts",
-      ".tsx"
+      ".ts"
     ],
-    "require": [
-      "ts-node/register"
+    "include": [
+      "lib"
     ],
     "reporter": [
-      "text-summary",
+      "text",
       "html"
     ],
-    "sourceMap": true,
-    "instrument": true
+    "all": true,
+    "check-coverage": true
   }
 }
