@@ -16,7 +16,7 @@ module.exports = async function (opts?) {
         path.resolve(`..`,`..`);
 
     process.env._GREATLAKESCODE_TMP_PATH =
-        path.resolve(process.env._GREATLAKESCODE_REPO_PATH,`tmp`);
+        path.resolve(process.env._GREATLAKESCODE_REPO_PATH,`files`,`tmp`);
 
     process.env._GREATLAKESCODE_FILE_PATH =
         path.resolve(process.env._GREATLAKESCODE_REPO_PATH,`files`);
