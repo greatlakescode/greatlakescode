@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha",
+    "test": "nyc mocha",
+    "test-11": "mocha --reporter dot",
+    "test-2": "nyc --reporter=html --reporter=text mocha",
+    "coverage": "nyc --reporter html --reporter text npm test",
     "coverage-report": "nyc report --reporter=text-lcov mocha",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "coverage-2": "nyc report --reporter=text-lcov | coveralls",
     "build:tsc": "tsc"
   },
   "author": "",
@@ -22,11 +25,32 @@
     "nyc": "^14.1.1",
     "optimist": "^0.6.1",
     "request": "^2.88.0",
-    "source-map-support": "^0.5.12",
-    "steamapi": "^2.0.7"
+    "steamapi": "^2.0.7",
+    "ts-node": "^8.1.0",
+    "typescript": "^3.4.5"
   },
   "devDependencies": {
     "@types/es6-promise": "^3.3.0",
-    "@types/node": "^10.12.18"
+    "@types/node": "^10.12.18",
+    "source-map-support": "^0.5.12"
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.ts",
+      "src/**/*.tsx"
+    ],
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "sourceMap": true,
+    "instrument": true
   }
 }

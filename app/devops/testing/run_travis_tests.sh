@@ -28,4 +28,9 @@ pm2 l
 
 npm run test
 
---mocha
+#mocha
+
+
+#https://azimi.me/2016/09/30/nyc-mocha-typescript.1.html
+#--require source-map-support/register
+#src/**/*.test.ts src/**/*.test.tsx
