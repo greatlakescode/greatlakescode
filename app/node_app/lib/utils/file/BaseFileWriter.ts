@@ -6,6 +6,8 @@ export default class BaseFileWriter
 
     static baseDirectory = process.env._GREATLAKESCODE_TMP_PATH;
 
+    new_file;
+
 
     constructor(protected filename)
     {
@@ -27,8 +29,17 @@ export default class BaseFileWriter
     }
 
 
+    static async exists(filepath)
+    {
+        return fs.existsSync(filepath);
+    }
+
+
     async populateFD()
     {
+        let file_exists = await BaseFileWriter.exists(this.filename);
+        this.new_file = !file_exists;
+
         let self = this;
         return new Promise((r) => {
             fs.open(self.filename, 'w',

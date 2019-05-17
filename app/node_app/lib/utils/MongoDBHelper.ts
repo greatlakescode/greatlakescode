@@ -1,5 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
+const uuidv1 = require('uuid/v1');
+
 
 export default class MongoDBHelper {
 
@@ -31,6 +33,12 @@ export default class MongoDBHelper {
     public static getObjectID(id)
     {
         return new ObjectID(id);
+    }
+
+
+    public static getId()
+    {
+        return uuidv1(); // ⇨ '45745c60-7b1a-11e8-9c9c-2d42b21b1a3e'
     }
 
 
