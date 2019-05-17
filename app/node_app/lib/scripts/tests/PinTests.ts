@@ -1,8 +1,10 @@
+import PinGenerator from "../../utils/crypto/PinGenerator";
+
 const moment = require('moment');
 const argv = require('optimist').argv;
 
 if (require.main === module) {
-    require('./../../../start_api_module')(async function () {
+    (async function () {
         try {
 
             let {db} = await require('./../init_script')();
@@ -24,14 +26,7 @@ if (require.main === module) {
             },1000);
 
         }
-    },{
-        MOC_OPERATIONAL_DB_SYNCRONIZE: '0',
-        IS_CLI: '1',
-    });
-    // (async function() {
-    //
-    //
-    // })();
+    })();
 }
 
 
@@ -55,6 +50,25 @@ export default class PinTests
     async runTests()
     {
         console.log(`${this.constructor.name}`);
+
+
+        let pin_code = await PinGenerator.generatePin(4);
+
+        console.log(`${this.constructor.name}`,pin_code);
+
+        let pin_codes = [];
+
+        for (let i = 0; i < 100; i++)
+        {
+            let pin_code = await PinGenerator.generatePin(5);
+
+            pin_codes.push(pin_code);
+
+        }
+
+
+        console.log(pin_codes);
+
 
 
     }
