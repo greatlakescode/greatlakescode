@@ -20,7 +20,7 @@ module.exports = {
             env: {
                 COMMON_VARIABLE: 'true',
                 "NODE_ENV": "dev",
-                "GREATLAKESCODE_PORT": "8205"
+                "GREATLAKESCODE_PORT": "3000"
             },
         }
     ]
