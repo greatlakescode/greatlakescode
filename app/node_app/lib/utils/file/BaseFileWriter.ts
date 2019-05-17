@@ -9,10 +9,12 @@ export default class BaseFileWriter
     new_file;
 
 
-    constructor(protected filename)
+    constructor(public filename)
     {
 
     }
+
+
 
 
     //filename without full path

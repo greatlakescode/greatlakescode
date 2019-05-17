@@ -55,6 +55,60 @@ export default class SecureDocsService
 
     }
 
+    async sendEmailVerificationCode(emailAddress,docId)
+    {
+        //set verification code with 15 minute expiration.
+
+    }
+
+
+    /**
+     * Check that the doc exists, the email is in the list of allowed_access.
+     * @param id
+     * @param emailAddress
+     */
+    async doVerifyEmailRequest(id,emailAddress,code?)
+    {
+        let docs = this.secureDocsCollection;
+
+        //
+        let result = await docs.findOne(
+            {
+                id,
+            allowed_access:{$elemMatch:{"type":"email_verify"
+                    ,email:emailAddress}}}
+        );
+
+        if (!result)
+        {
+            console.log(`failed to get doc`);
+            return {
+                status: `FAILED`,
+                error: true,
+                message: `Failed to get doc.`
+            };
+        }
+        console.log(`got doc `,result);
+
+        if (!code)
+        {
+            this.sendEmailVerificationCode(emailAddress,id);
+            return {
+                status: `CODE_VERIFICATION_SENT`,
+                error: true,
+                message: `Failed to get doc.`
+            };
+            //send email to emailAddress to verify request
+
+        }
+        else {
+
+        }
+
+
+
+    }
+
     /**
      * Initialize by adding one secure doc for user russjohnson09@gmail.com
      * and allowing russjohnson09@gmail.com to access.
@@ -63,8 +117,19 @@ export default class SecureDocsService
     {
         // await this.addRequiredIndexes();
 
-        await this.addTestSecureDoc();
+        let id = await this.addTestSecureDoc();
+
+        await this.testRequest(id,`russjohnson09@gmail.com`);
     }
+
+
+    async testRequest(docId,email)
+    {
+        console.log(`send test request`);
+        await this.doVerifyEmailRequest(docId,email);
+
+    }
+
 
 
 
@@ -81,9 +146,11 @@ export default class SecureDocsService
         }
 
         let docs = this.secureDocsCollection;
+        let id = MongoDBHelper.getId();
         await docs.insertOne({
-            id: MongoDBHelper.getId(),
-            name: 'last_app_list_update',
+            id,
+            filename: testFileName,
+            file_absolute_path: file.filename,
             username: `russjohnson09@gmail.com`,
             //TODO set limit or expiration...
             allowed_access: [
@@ -94,6 +161,8 @@ export default class SecureDocsService
                 }
             ],
         });
+
+        return id;
     }
 
 
