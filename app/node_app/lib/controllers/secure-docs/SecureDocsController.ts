@@ -16,6 +16,7 @@ import TVMazeRequest from "../../utils/tv-maze/TVMazeRequest";
 import MongoDBHelper from "../../utils/MongoDBHelper";
 import SteamRequest from "../../utils/steam/SteamRequest";
 import SteamService from "../../services/steam/SteamService";
+import SecureDocsService from "../../services/secure-docs/SecureDocsService";
 
 const MongoClient = require('mongodb').MongoClient;
 const jwt = require('jsonwebtoken');
@@ -31,14 +32,14 @@ export default class SecureDocsController
 {
 
 
-    secureDocsService:SteamService;
+    secureDocsService:SecureDocsService;
 
     /**
      * Initialize any services used by the controller.
      */
     async initServices()
     {
-        this.secureDocsService = await SteamService.initService({
+        this.secureDocsService = await SecureDocsService.initService({
             db: this.db
         });
     }

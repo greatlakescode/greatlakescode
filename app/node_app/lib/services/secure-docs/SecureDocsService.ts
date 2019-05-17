@@ -74,7 +74,7 @@ export default class SecureDocsService
     {
         console.log(`addTestSecureDoc`);
         let testFileName = `test.json`;
-        let file = await JsonWriter.createPermanentWriter(name);
+        let file = await JsonWriter.createPermanentWriter(testFileName);
         if (file.new_file)
         {
             file.writeData({test:1})

@@ -31,8 +31,9 @@ export default class JsonWriter
 
 
     public static async createPermanentWriter(name)
-
     {
+
+        console.log( process.env._GREATLAKESCODE_FILE_PATH);
         return this.create({
             name,
             basepath: process.env._GREATLAKESCODE_FILE_PATH

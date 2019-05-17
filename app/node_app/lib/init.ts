@@ -10,22 +10,24 @@ module.exports = async function (opts?) {
         path: envConfigFile
     });
 
-    require('source-map-support').install();
     console.log(`init`);
 
     process.env._GREATLAKESCODE_REPO_PATH =
-        path.resolve(`..`,`..`,`..`);
+        path.resolve(`..`,`..`);
 
     process.env._GREATLAKESCODE_TMP_PATH =
-        path.resolve(process.env._GREATLAKESCODE_REPO_PATH,`lib`,`tmp`);
+        path.resolve(process.env._GREATLAKESCODE_REPO_PATH,`tmp`);
 
     process.env._GREATLAKESCODE_FILE_PATH =
-        path.resolve(process.env._GREATLAKESCODE_REPO_PATH,`lib`,`files`);
+        path.resolve(process.env._GREATLAKESCODE_REPO_PATH,`files`);
 
     console.log(`init`,process.env._GREATLAKESCODE_REPO_PATH,
         process.env._GREATLAKESCODE_TMP_PATH,
     );
-    // process.exit(1);
+
+    console.log(`init`,process.env._GREATLAKESCODE_REPO_PATH,
+        process.env._GREATLAKESCODE_FILE_PATH,
+    );
 
     let mongoDB = await MongoDBHelper.getDB();
 

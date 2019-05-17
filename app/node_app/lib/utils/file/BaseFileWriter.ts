@@ -31,26 +31,52 @@ export default class BaseFileWriter
 
     static async exists(filepath)
     {
-        return fs.existsSync(filepath);
+        console.log(`BaseFileWriter->exists`,filepath);
+        try {
+            console.log(`BaseFileWriter->exists check`,filepath);
+            let result = fs.existsSync(filepath);
+            console.log(`BaseFileWriter->exists check`,result);
+            return result;
+        }
+        catch (e)
+        {
+            console.log(`error checking file exists`)
+            return false;
+        }
     }
 
 
     async populateFD()
     {
+        console.log(`populateFD`,this.filename);
         let file_exists = await BaseFileWriter.exists(this.filename);
         this.new_file = !file_exists;
+        console.log(`got file exists`,this.new_file);
 
         let self = this;
-        return new Promise((r) => {
+
+
+        let promise = new Promise((r) => {
             fs.open(self.filename, 'w',
                 function(err, fd) {
-                    if (err) {
-                        throw 'error opening file: ' + err;
-                    }
-                    self.fd = fd;
-                    r();
+                    return r({err,fd});
+                    // if (err) {
+                    //     return r({err,fd});
+                    // }
+                    // r();
                 });
         });
+        let result:any = await Promise.resolve(promise);
+
+        let {fd,err} = result;
+        console.log(`error`,err);
+        if (err)
+        {
+            throw new Error("failed to open file " + err );
+        }
+        else {
+            self.fd = fd;
+        }
     }
 
 
@@ -61,7 +87,15 @@ export default class BaseFileWriter
     {
         if (this.fd === undefined)
         {
-            await this.populateFD();
+            try {
+                await this.populateFD();
+
+            }
+            catch (e)
+            {
+                console.error(`failed to get file`);
+                throw e;
+            }
         }
         return this.fd;
     }

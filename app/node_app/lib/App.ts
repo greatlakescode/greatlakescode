@@ -1,3 +1,6 @@
+require('source-map-support').install();
+
+
 import EmailBasedAuthController from "./controllers/auth/EmailBasedAuthController";
 import KanbanController from "./controllers/kanban/KanbanController";
 import NotesController from "./controllers/notes/NotesController";
@@ -8,6 +11,8 @@ import ProfileController from "./controllers/profile/ProfileController";
 import User from "./data/User";
 import TVController from "./controllers/tv/TVController";
 import SteamController from "./controllers/steam/SteamController";
+import SecureDocsController from "./controllers/secure-docs/SecureDocsController";
+//https://stackoverflow.com/questions/42088007/is-there-source-map-support-for-typescript-in-node-nodemon
 
 
 const express = require('express');
@@ -23,6 +28,10 @@ export default class App {
     protected mongoDB;
 
     async init() {
+
+        // BaseFileWriter
+
+        // throw new Error(`error`);
         //TODO watch .env
 //https://github.com/remy/nodemon/issues/1357
 
@@ -114,6 +123,24 @@ export default class App {
             console.log(`initialize ${route}`);
 
             await SteamController.initController({
+                db,
+                router
+            });
+            let t2 = Date.now();
+            let d1 = t2 - t1;
+            console.log(`initialized ${route} in ${d1} (ms)`);
+        })();
+
+
+        //add secure-docs
+        await (async function() {
+            let route = '/api/secure-docs';
+            let router = express.Router();
+            app.use(route, router);
+            let t1 = Date.now();
+            console.log(`initialize ${route}`);
+
+            await SecureDocsController.initController({
                 db,
                 router
             });

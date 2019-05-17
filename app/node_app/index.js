@@ -1,33 +1,37 @@
-const path = require('path');
-const fs = require("fs");
 
-let envFilePath;
 
-if (fs.existsSync(path.resolve(__dirname,'.env')))
-{
-    console.log(`using local .env file`);
-    envFilePath = path.resolve(__dirname,'.env')
-}
-else if (fs.existsSync('/home/ubuntu/.keys/.global-env'))
-{
-    console.log(`using global .env file`);
-    envFilePath = '/home/ubuntu/.keys/.global-env';
-}
+(async function() {
+    const path = require('path');
+    const fs = require("fs");
 
-if (envFilePath)
-{
-    console.log(`using env file ${envFilePath}`);
-    require('dotenv').config({path:envFilePath});
+    let envFilePath;
 
-}
-else {
-    console.log(`using env file ${envFilePath}`);
+    if (fs.existsSync(path.resolve(__dirname,'.env')))
+    {
+        console.log(`using local .env file`);
+        envFilePath = path.resolve(__dirname,'.env')
+    }
+    else if (fs.existsSync('/home/ubuntu/.keys/.global-env'))
+    {
+        console.log(`using global .env file`);
+        envFilePath = '/home/ubuntu/.keys/.global-env';
+    }
 
-    require('dotenv').config();
-}
+    if (envFilePath)
+    {
+        console.log(`using env file ${envFilePath}`);
+        require('dotenv').config({path:envFilePath});
 
-require('source-map-support').install();
+    }
+    else {
+        console.log(`using env file ${envFilePath}`);
 
-require('./dist/start_app')({
+        require('dotenv').config();
+    }
+    let result = await require('./dist/init')();
 
-})
+    require('./dist/start_app')({
+    });
+
+})();
+
