@@ -1,11 +1,15 @@
+import TestMain from "./TestMain";
 
-describe('calculator/add', () => {
+let expect = require('chai').expect;
 
-    it('should return a number when parameters are passed to `add()`', () => {
-        expect(sut.add(1,1)).to.be.a('number');
-    });
 
-    it('should return sum of `2` when 1 + 1 is passed to `add()`', () => {
-        expect(sut.add(1,1)).to.equal(2);
+
+
+describe('test', () => {
+
+    it('test1', async () => {
+        let test = await TestMain.create();
+
+        await test.runTests();
     });
 });

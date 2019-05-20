@@ -28,7 +28,7 @@ export default class TestMain
     {
         console.log(`TestMain run tests`);
 
-        throw new Error(`error source-map should give ts line`);
+        // throw new Error(`error source-map should give ts line`);
     }
 
 
