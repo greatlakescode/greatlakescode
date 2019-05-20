@@ -24,11 +24,28 @@ index.testFunction2(true);
             };
             request(options, function (error, response, body) {
                 if (error) throw new Error(error);
+
+                console.log(`got response
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                --------
+                
+                
+                
+                
+                --------`)
                 done();
             });
 
         })
-    });
+    })();
 
 
     console.log(`close express`);
