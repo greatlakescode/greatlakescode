@@ -1,4 +1,4 @@
-import App from "../lib/App";
+import App from "../App";
 
 process.env.GREATLAKESCODE_PORT = '3001';
 

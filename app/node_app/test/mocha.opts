@@ -3,6 +3,4 @@
 --require source-map-support/register
 --full-trace
 --bail
-test/setup.test.ts
-test/**/*.test.ts
-test/shutdown.test.ts
+lib/tests/**/*.test.ts

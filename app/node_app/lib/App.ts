@@ -37,7 +37,8 @@ export default class App {
 
     static async staticShutdown()
     {
-        await this.instance.shutdown();
+        console.log(this,this.instance,App.instance);
+        await App.instance.shutdown();
     }
 
     async shutdown()
@@ -77,8 +78,6 @@ export default class App {
     }
 
     static async startApp(opts?) {
-        console.log(`App`,opts,this);
-        process.exit(0);
         let mainApp = new App(opts);
 
         await mainApp.init();

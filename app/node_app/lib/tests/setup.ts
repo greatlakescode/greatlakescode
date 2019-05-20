@@ -18,11 +18,11 @@ process.env.GREATLAKESCODE_PORT = '3001';
 
             // console.log(process.env);
             //travis-ci will load these in separately.
-            require('dotenv').config({path:path.resolve(__dirname,'..','.env')});
+            require('dotenv').config({path:path.resolve(__dirname,'..','..','.env')});
 
-            let result = await require('./..//dist/init')();
+            let result = await require('./../../dist/init')();
 
-            await require('./../dist/start_app')({
+            await require('./../../dist/start_app')({
             });
 
 
