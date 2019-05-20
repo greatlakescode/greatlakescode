@@ -4,23 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "test-11": "mocha --reporter dot",
-    "test-2": "nyc --reporter=html --reporter=text mocha",
-    "coverage-2": "nyc --reporter html --reporter text npm test",
-    "coverage-report": "nyc report --reporter=text-lcov mocha",
-    "build:tsc": "tsc"
+    "lint": "tslint --project tsconfig.json --format stylish",
+    "test": "mocha",
+    "coverage": "nyc mocha"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/mocha": "^2.2.48",
     "bcrypt": "^3.0.6",
     "chai": "^4.2.0",
     "coveralls": "^3.0.3",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.1",
+    "mocha": "^6.1.4",
     "moment": "^2.24.0",
     "mongodb": "^3.2.3",
     "nyc": "^14.1.1",

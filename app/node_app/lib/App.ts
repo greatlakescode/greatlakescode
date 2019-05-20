@@ -18,16 +18,32 @@ import SecureDocsController from "./controllers/secure-docs/SecureDocsController
 const express = require('express');
 export default class App {
 
-    constructor(opts?) {
 
+    static instance;
+
+    //store singleton
+    constructor(opts?) {
+        App.instance = this;
     }
 
     protected app;
+    protected server;
     protected port;
 
     protected mongoDB;
 
     protected start_date;
+
+
+    static async staticShutdown()
+    {
+        await this.instance.shutdown();
+    }
+
+    async shutdown()
+    {
+        this.server.close();
+    }
 
     async init() {
 
@@ -61,6 +77,8 @@ export default class App {
     }
 
     static async startApp(opts?) {
+        console.log(`App`,opts,this);
+        process.exit(0);
         let mainApp = new App(opts);
 
         await mainApp.init();
@@ -324,7 +342,7 @@ export default class App {
         app.use(bodyParser.json());
 
 
-        app.listen(this.port, () =>
+        this.server = app.listen(this.port, () =>
             console.log(`Example app listening on port ${this.port}!`
             ));
 

@@ -1,2 +1,8 @@
+-r test/setup.js
+--require ts-node/register
+--require source-map-support/register
 --full-trace
 --bail
+test/setup.test.ts
+test/**/*.test.ts
+test/shutdown.test.ts

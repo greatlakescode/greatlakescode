@@ -108,7 +108,7 @@ export default class NotesController
                 username: user.username,
                 note: req.body, //object containing the note
             };
-            await insertMany(`notes`,[note]);
+            await db.collection('notes').insertMany([note]);
             res.json({
                 'ok': 'ok'
             });
