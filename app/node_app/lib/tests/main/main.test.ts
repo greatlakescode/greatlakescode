@@ -14,7 +14,6 @@ console.log(`main.test.ts`);
 describe('setup', function() {
     this.timeout(10 * 1000)
     it('setup sever', async function() {
-        // this.timeout(10 * 1000)
 
         console.log(`setup.test.ts setup sever`);
 
@@ -27,14 +26,8 @@ describe('setup', function() {
         require('dotenv').config({path:path.resolve(__dirname,'..','..','..','.env')});
 
         let result = await require('./../../../dist/init')();
-        //
-        // await require('./../../../dist/start_app')({
-        // });
 
         await App.startApp({});
-
-
-
 
         expect(App.instance).not.to.be.undefined;
 
@@ -70,17 +63,15 @@ describe('/ping', () => {
 
 
 
-describe('shutdown server', function() {
-    this.timeout(10 * 1000);
-    it('shutdown server', async function() {
-        // this.timeout(10 * 1000)
-
-        expect(App.instance).not.to.be.undefined;
-
-        await App.staticShutdown();
-
-
-        console.log(`finished shutdown`);
-
-    })
-});
+// describe('shutdown server', function() {
+//     this.timeout(10 * 1000);
+//     it('shutdown server', async function() {
+//         expect(App.instance).not.to.be.undefined;
+//
+//         await App.staticShutdown();
+//
+//
+//         console.log(`finished shutdown`);
+//
+//     })
+// });
