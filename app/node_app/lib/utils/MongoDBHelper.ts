@@ -11,12 +11,15 @@ export default class MongoDBHelper {
     public static mongoDbUrl = `mongodb://localhost:27017`;
     public static defaultDBName = `greatlakescode`;
 
+    public static client;
+
 
     public static async getDB(opts?: { url?, dbName? }):Promise<any> {
         opts = opts || {};
         let url = opts.url || this.mongoDbUrl;
         let dbName = opts.dbName || this.defaultDBName;
         const client = new MongoClient(url);
+        this.client = client;
         let self = this;
 
         return new Promise((resolve) => {
@@ -29,6 +32,12 @@ export default class MongoDBHelper {
             });
         })
     }
+
+    public static closeClient()
+    {
+        this.client.close();
+    }
+
 
     public static getObjectID(id)
     {

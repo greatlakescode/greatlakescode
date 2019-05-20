@@ -3,4 +3,5 @@
 --require source-map-support/register
 --full-trace
 --bail
+--exit
 lib/tests/**/*.test.ts

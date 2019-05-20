@@ -37,13 +37,24 @@ export default class App {
 
     static async staticShutdown()
     {
-        console.log(this,this.instance,App.instance);
         await App.instance.shutdown();
+        console.log(`finished shutdown`);
     }
 
     async shutdown()
     {
+        console.log(`shutdown server`,this.server);
         this.server.close();
+        console.log(`shutdown server finished`,this.server);
+
+
+        console.log(`close mongo`);
+        MongoDBHelper.closeClient();
+        console.log(`close mongo finished`);
+
+
+
+
     }
 
     async init() {
