@@ -23,12 +23,17 @@ export default class App {
 
     //store singleton
     constructor(opts?) {
+        opts = opts || {};
         App.instance = this;
+
+        this.script_only = opts.script_only;
     }
 
     protected app;
     protected server;
     protected port;
+
+    protected script_only;
 
     protected mongoDB;
 
@@ -57,6 +62,7 @@ export default class App {
 
     }
 
+
     async init() {
 
         this.start_date = new Date();
@@ -69,7 +75,15 @@ export default class App {
 
         this.mongoDB = await MongoDBHelper.getDB();
 
+        if (this.script_only)
+        {
+            return;
+        }
+
         const path = require('path');
+
+
+
         const express = require('express');
         let app = express();
         this.app = app;
@@ -82,7 +96,6 @@ export default class App {
 //the other 2 are backup processes. But they all process requests in the same way.
 //IP hashing is setup to allow for socket io type processing.
 
-
         await this.addControllers();
 
 
@@ -92,6 +105,8 @@ export default class App {
         let mainApp = new App(opts);
 
         await mainApp.init();
+
+        return mainApp;
     }
 
     async addControllers() {

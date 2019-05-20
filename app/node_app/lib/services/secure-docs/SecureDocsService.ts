@@ -117,9 +117,9 @@ export default class SecureDocsService
     {
         // await this.addRequiredIndexes();
 
-        let id = await this.addTestSecureDoc();
+        // let id = await this.addTestSecureDoc();
 
-        await this.testRequest(id,`russjohnson09@gmail.com`);
+        // await this.testRequest(id,`russjohnson09@gmail.com`);
     }
 
 

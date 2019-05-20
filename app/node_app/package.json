@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "tslint --project tsconfig.json --format stylish",
     "test": "nyc mocha",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "test:docs": "mocha --require ts-node/register --require source-map-support/register --full-trace --bail lib/tests/main/secure-docs/secure-docs.test.ts"
   },
   "author": "",
   "license": "ISC",
