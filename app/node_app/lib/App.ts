@@ -1,5 +1,5 @@
 require('source-map-support').install();
-
+const path = require('path');
 
 import EmailBasedAuthController from "./controllers/auth/EmailBasedAuthController";
 import KanbanController from "./controllers/kanban/KanbanController";
@@ -20,6 +20,12 @@ export default class App {
 
 
     static instance;
+
+
+    static get repoPath()
+    {
+        return process.env._GREATLAKESCODE_REPO_PATH;
+    }
 
     //store singleton
     constructor(opts?) {
@@ -64,6 +70,23 @@ export default class App {
 
 
     async init() {
+
+        // process.env._GREATLAKESCODE_REPO_PATH =
+        //     path.resolve(`..`,`..`,`..`);
+        //
+        // process.env._GREATLAKESCODE_TMP_PATH =
+        //     path.resolve(process.env._GREATLAKESCODE_REPO_PATH,`files`,`tmp`);
+        //
+        // process.env._GREATLAKESCODE_FILE_PATH =
+        //     path.resolve(process.env._GREATLAKESCODE_REPO_PATH,`files`);
+        //
+        // console.log(`init`,process.env._GREATLAKESCODE_REPO_PATH,
+        //     process.env._GREATLAKESCODE_TMP_PATH,
+        // );
+        //
+        // console.log(`init`,process.env._GREATLAKESCODE_REPO_PATH,
+        //     process.env._GREATLAKESCODE_FILE_PATH,
+        // );
 
         this.start_date = new Date();
 

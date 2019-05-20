@@ -1,9 +1,13 @@
 import MongoDBHelper from "../../../utils/MongoDBHelper";
+import SecureDocsService from "../../../services/secure-docs/SecureDocsService";
+import App from "../../../App";
+const path = require('path');
 
 export default class SecureDocsTests
 {
 
     db;
+    secureDocsService;
 
     constructor(opts?)
     {
@@ -18,6 +22,11 @@ export default class SecureDocsTests
         {
             this.db = await MongoDBHelper.getDB();
         }
+
+
+        this.secureDocsService = await SecureDocsService.initService({
+            db: this.db
+        });
     }
 
     static async createAndRun(opts?)
@@ -44,7 +53,37 @@ export default class SecureDocsTests
     {
         console.log(`running tests`,this.constructor.name);
 
+        let repoPath = App.repoPath;
+        let testFile = path.resolve(repoPath,'app/node_app/lib/tests/unit/secure-docs/test.txt');
 
+        console.log(`testFile`,testFile);
+
+        let doc = await this.secureDocsService.addDoc({
+            filename: `test.txt`,
+            file_absolute_path: testFile,
+            username: `russjohnson09@gmail.com`,
+            allowed_access: [
+                {
+                    type: 'email_verify',
+                    email: 'russjohnson09@gmail.com',
+                    expires: '0' //never expires
+                }
+            ],
+        });
+
+        console.log(`created doc`,doc);
+
+
+        await this.verifyDocRequestSend(doc);
+
+
+
+    }
+
+
+    async verifyDocRequestSend(doc)
+    {
+        await this.secureDocsService.doVerifyEmailRequest(doc.id,'russjohnson09@gmail.com');
 
     }
 
@@ -53,6 +92,7 @@ export default class SecureDocsTests
     static async runAsScript()
     {
         try {
+            await require('./../../../init')();
             await SecureDocsTests.createAndRun();
 
             console.log(`finished tests`);

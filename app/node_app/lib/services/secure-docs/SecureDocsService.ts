@@ -59,6 +59,10 @@ export default class SecureDocsService
     {
         //set verification code with 15 minute expiration.
 
+        console.log(`sendEmailVerificationCode ${emailAddress}`);
+
+
+
     }
 
 
@@ -92,7 +96,7 @@ export default class SecureDocsService
 
         if (!code)
         {
-            this.sendEmailVerificationCode(emailAddress,id);
+            await this.sendEmailVerificationCode(emailAddress,id);
             return {
                 status: `CODE_VERIFICATION_SENT`,
                 error: true,
@@ -132,6 +136,29 @@ export default class SecureDocsService
 
 
 
+    async addDoc(doc:{
+        id?,
+        file_absolute_path,
+        filename,
+        username,
+        allowed_access:Array<
+            {
+                type,email?,expires?
+            }>
+    })
+    {
+        if (!doc.id)
+        {
+            doc.id = MongoDBHelper.getId();
+        }
+
+        let docs = this.secureDocsCollection;
+
+        await docs.insertOne(doc);
+
+        return doc;
+
+    }
 
 
 
