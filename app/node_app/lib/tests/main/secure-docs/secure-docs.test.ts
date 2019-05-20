@@ -1,5 +1,6 @@
 import App from "../../../App";
 import SecureDocsService from "../../../services/secure-docs/SecureDocsService";
+import SecureDocsTests from "../../unit/secure-docs/SecureDocsTests";
 
 let expect = require('chai').expect;
 const request = require("request");
@@ -33,12 +34,20 @@ describe('setup', function() {
 
 describe('test docs', function() {
     this.timeout(10 * 1000);
-    it('test docs', async function() {
 
-        this.secureDocsService = await SecureDocsService.initService({
+    it('unit tests', async function() {
+
+        await SecureDocsTests.createAndRun({
             db: app.mongoDB
         });
 
-    })
+    });
+
+    // it('test docs', async function() {
+    //
+    //     this.secureDocsService = await SecureDocsService.initService({
+    //         db: app.mongoDB
+    //     });
+    // })
 });
 
