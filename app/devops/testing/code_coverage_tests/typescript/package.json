@@ -1,0 +1,35 @@
+{
+  "name": "node_app2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node dist/test/TestMain.js",
+    "test-html": "nyc --reporter=lcov --reporter=text-summary npm run test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.0",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
+    "request": "^2.88.0",
+    "@types/es6-promise": "^3.3.0",
+    "@types/node": "^10.12.18"
+  },
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "exclude": [
+      "**/*.d.ts"
+    ],
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "all": true,
+    "check-coverage": true
+  },
+  "devDependencies": {
+    "source-map-support": "^0.5.12"
+  }
+}
