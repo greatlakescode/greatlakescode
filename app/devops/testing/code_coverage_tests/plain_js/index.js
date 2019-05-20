@@ -1,6 +1,7 @@
 
 let x = 1;
 
+let server;
 
 
 
@@ -22,7 +23,12 @@ module.exports = {
     },
     initExpress: async function()
     {
-        return require('./src/express_server')();
+        server = await require('./src/express_server')();
+    },
+    closeExpress: async function()
+    {
+        server.close();
+        // return require('./src/express_server')();
     }
 };
 

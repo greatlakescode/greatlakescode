@@ -14,9 +14,9 @@ module.exports = function()
             res.json({ok:1})
         });
 
-        app.listen(port, () => {
+        let server = app.listen(port, () => {
             console.log(`express listening to port ${port}`);
-            r();
+            r(server);
         });
 
 
