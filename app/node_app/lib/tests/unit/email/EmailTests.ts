@@ -19,7 +19,7 @@ export default class EmailTests
     {
         console.log(`running tests`,this.constructor.name);
 
-        Email.sendEmail({
+        await Email.sendEmail({
             to: `russjohnson09@gmail.com`,
             from: `russj@detroitsoftware.com`,
             subject: 'test',
