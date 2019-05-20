@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node test/test.js",
-    "test-html": "nyc --reporter=lcov --reporter=text-summary npm run test"
+    "test": "nyc mocha",
+    "test-html": "nyc --reporter=lcov --reporter=text-summary mocha"
   },
   "author": "",
   "license": "ISC",
