@@ -1,7 +1,5 @@
 import TestMain from "./TestMain";
 
-let expect = require('chai').expect;
-
 
 
 

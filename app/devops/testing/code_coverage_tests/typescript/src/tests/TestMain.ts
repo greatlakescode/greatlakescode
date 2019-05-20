@@ -1,12 +1,3 @@
-require('source-map-support').install();
-//https://istanbul.js.org/docs/tutorials/typescript/
-
-//https://github.com/istanbuljs/nyc/issues/618
-
-//https://github.com/Microsoft/TypeScript/issues/24993
-
-//    "extends": "@istanbuljs/nyc-config-typescript",
-
 export default class TestMain
 {
 
