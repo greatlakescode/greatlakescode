@@ -4,15 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha"
+    "test": "nyc mocha",
+    "test-html": "nyc --reporter=lcov --reporter=text-summary mocha"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mocha": "^6.1.4"
+    "express": "^4.17.0",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
+    "request": "^2.88.0"
   },
   "nyc": {
     "all": true,
-    "check-coverage": true
+    "check-coverage": true,
+    "include": [
+      "index.js",
+      "**/src/**",
+      "/src/ignored_directory/not_ignored.js"
+    ],
+    "exclude": [
+      "**/src/ignore_**",
+      "**/src/ignored_directory/**"
+    ]
   }
 }

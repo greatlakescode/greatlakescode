@@ -19,5 +19,12 @@ module.exports = {
         else {
             console.log('2');
         }
+    },
+    initExpress: async function()
+    {
+        return require('./src/express_server')();
     }
-}
+};
+
+
+
