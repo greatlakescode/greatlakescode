@@ -10,6 +10,9 @@ export default class EmailTransporter
 
     transporter;
 
+
+    defaultFrom = `baylee.wilderman@ethereal.email`;
+
     constructor(opts?) {
         super(opts);
     }
@@ -21,7 +24,25 @@ export default class EmailTransporter
     }
 
 
-    async init() {
+    async initMailGun()
+    {
+
+        //pass1234#$%^!
+        this.transporter =
+            nodemailer.createTransport({
+                host: "smtp.mailgun.org",
+                port: 465,
+                secure: true, // true for 465, false for other ports
+                auth: {
+                    user: `postmaster@coderuss.com`, // generated ethereal user
+                    pass: `pass1234#$%^!` // generated ethereal password
+                }
+            });
+    }
+
+
+    async initEtheral()
+    {
         this.transporter = nodemailer.createTransport({
             host: "smtp.ethereal.email",
             port: 587,
@@ -31,6 +52,21 @@ export default class EmailTransporter
                 pass: `uyV7rQvvwbWRxwTqms` // generated ethereal password
             }
         });
+    }
+
+
+    async init() {
+        // await this.initMailGun();
+        await this.initEtheral();
+        // this.transporter = nodemailer.createTransport({
+        //     host: "smtp.ethereal.email",
+        //     port: 587,
+        //     secure: false, // true for 465, false for other ports
+        //     auth: {
+        //         user: `baylee.wilderman@ethereal.email`, // generated ethereal user
+        //         pass: `uyV7rQvvwbWRxwTqms` // generated ethereal password
+        //     }
+        // });
         // nodemailer.createTransport({
         //     host: "smtp.example.com",
         //     port: 587,
@@ -57,8 +93,9 @@ export default class EmailTransporter
     private async sendWithNodeMailer(sendOpts)
     {
         let info = await this.transporter.sendMail({
-            from: '"Fred Foo 👻" <foo@example.com>', // sender address
-            to: "russjohnson09@gmail.com", // list of receivers
+            from: this.defaultFrom, // sender address
+            to: "russj@detroitsoftware.com", // list of receivers
+            // to: "russjohnson09@gmail.com", // list of receivers
             subject: "Hello ✔", // Subject line
             text: "Hello world?", // plain text body
             html: "<b>Hello world?</b>" // html body
