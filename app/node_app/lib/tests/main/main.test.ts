@@ -62,6 +62,30 @@ describe('/ping', () => {
 });
 
 
+describe('/ping', () => {
+    it('/ping should respond with 200', (done) => {
+
+
+        expect(App.instance).not.to.be.undefined;
+
+        let options = { method: 'GET',
+            url: baseApi,
+            headers:
+                {
+                },
+        };
+        request(options, function (error, response, body) {
+            if (error) throw new Error(error);
+            // console.log(body);
+            expect(response.statusCode).to.be.equal(200);
+            done();
+        });
+
+
+    })
+});
+
+
 
 // describe('shutdown server', function() {
 //     this.timeout(10 * 1000);
