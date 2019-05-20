@@ -1,0 +1,18 @@
+{
+  "name": "node_app2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^6.1.4"
+  },
+  "nyc": {
+    "all": true,
+    "check-coverage": true
+  }
+}

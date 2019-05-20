@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^3.0.6",
+    "chai": "^4.2.0",
     "coveralls": "^3.0.3",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
@@ -35,16 +36,7 @@
     "source-map-support": "^0.5.12"
   },
   "nyc": {
-    "extension": [
-      ".ts"
-    ],
-    "include": [
-      "lib"
-    ],
-    "reporter": [
-      "text",
-      "html"
-    ],
+    "extends": "@istanbuljs/nyc-config-typescript",
     "all": true,
     "check-coverage": true
   }
