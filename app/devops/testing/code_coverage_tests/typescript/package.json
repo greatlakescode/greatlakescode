@@ -6,23 +6,29 @@
   "scripts": {
     "test": "node dist/test/TestMain.js",
     "test-html": "nyc --reporter=lcov --reporter=text-summary npm run test",
-    "test-simple": "nyc npm run test"
+    "test-simple": "nyc npm run test",
+    "remap": "remap-istanbul"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/chai": "^4.1.2",
+    "@types/mocha": "^2.2.48",
+    "@types/es6-promise": "^3.3.0",
+    "@types/node": "^10.12.18",
     "express": "^4.17.0",
     "mocha": "^6.1.4",
     "nyc": "^14.1.1",
+    "remap-istanbul": "^0.13.0",
     "request": "^2.88.0",
-    "@types/es6-promise": "^3.3.0",
-    "@types/node": "^10.12.18",
     "source-map-support": "^0.5.12"
   },
   "nyc": {
-    "extends": "@istanbuljs/nyc-config-typescript",
     "all": true,
-    "check-coverage": true
+    "check-coverage": true,
+    "include": [
+      "**/dist/**"
+    ]
   },
   "devDependencies": {}
 }
