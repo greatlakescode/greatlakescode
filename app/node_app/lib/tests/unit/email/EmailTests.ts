@@ -1,4 +1,5 @@
 import BaseUnitTests from "../BaseUnitTests";
+import Email from "../../../utils/email/Email";
 
 export default class EmailTests
     extends BaseUnitTests
@@ -17,6 +18,13 @@ export default class EmailTests
     async run()
     {
         console.log(`running tests`,this.constructor.name);
+
+        Email.sendEmail({
+            to: `russjohnson09@gmail.com`,
+            from: `russj@detroitsoftware.com`,
+            subject: 'test',
+            html: 'test<br/>'
+        })
 
     }
 
