@@ -1,0 +1,1 @@
+mail._domainkey.greatlakescode.us example.com:mail:/etc/opendkim/keys/greatlakescode.us/mail.private
