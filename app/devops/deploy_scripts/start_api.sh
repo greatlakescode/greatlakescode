@@ -8,12 +8,14 @@ cd ..
 dir="$(pwd)"
 echo $dir #should be app
 
-./devops/deploy_scripts/start_api
+cd node_app
 
 
-#TODO build and then change symbolic link for zero downtime
-npm run build
+npm install
+tsc
+cd pm2/prod
+pwd
+pm2 startOrGracefulReload greatlakescode.pm2.config.js
+pm2 startOrGracefulReload greatlakescode_backup.pm2.config.js
 
-
-cd $dir
 ./devops/deploy_scripts/lambda/deploy_lambda.sh
