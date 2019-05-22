@@ -11,6 +11,8 @@ echo $dir #should be app
 ./devops/deploy_scripts/start_api
 
 
+cd $dir
+cd react_frontend
 #TODO build and then change symbolic link for zero downtime
 npm run build
 
