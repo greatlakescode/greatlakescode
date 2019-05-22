@@ -8,6 +8,11 @@ sudo apt-get install vsftpd
 sudo service vsftpd start
 sudo systemctl enable vsftpd
 
+#Copy Config
+/etc/vsftpd.conf
+/etc/vsftpd.userlist
+sudo service vsftpd restart
 
 
 #Open AWS Ports
+sudo service vsftpd restart
