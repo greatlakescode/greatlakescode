@@ -55,3 +55,7 @@ milter_default_action = accept
 
 #SPF
 policyd-spf_time_limit = 3600
+
+smtpd_recipient_restrictions=
+    reject_unauth_destination,
+    check_policy_service unix:private/policyd-spf
