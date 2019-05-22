@@ -23,5 +23,5 @@ echo "zipping project $(pwd)"
 #sudo apt-get install zip gzip tar
 cd ..
 zip -r node_app.zip node_app
-
-#scp ubuntu@greatlakescode.us:/ubuntu/home/greatlakescode/app/node_app.zip
+sudo cp node_app.zip /home/greatlakescode/lambda
+rm node_app.zip

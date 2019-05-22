@@ -8,8 +8,9 @@ cd ..
 dir="$(pwd)"
 echo $dir #should be app
 
-cd node_app
 
+cd dir/devops/deploy_scripts
 ./nginx/nginx-deploy.sh
 
+cd dir/devops/deploy_scripts
 ./start.sh
