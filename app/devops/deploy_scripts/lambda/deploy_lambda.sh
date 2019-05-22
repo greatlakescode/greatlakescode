@@ -18,5 +18,7 @@ zip -r ./../node_app.zip . -x node_modules/\*
 #zip -r node_app.zip ./node_app/* -x ./node_app/dist*
 #zip -r node_app.zip ./node_app/* -x ./node_app/dist*
 #zip -r node_app.zip node_app
+
+cd ..
 sudo cp node_app.zip /home/greatlakescode/lambda
 rm node_app.zip
