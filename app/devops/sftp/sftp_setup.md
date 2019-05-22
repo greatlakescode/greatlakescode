@@ -74,6 +74,10 @@ sudo chown greatlakescode2:greatlakescode2 /home/greatlakescode2
 sudo chmod 700 /home/greatlakescode2
 
 
+#Ensure Nginx Has Access
+sudo chmod 770 /home/ubuntu
+sudo chown ubuntu:www-data /home/ubuntu
+
 
 #Test
 C:\Users\russj\Documents\moc\greatlakescode\app\node_app>ssh greatlakescode@greatlakescode.us

@@ -30,6 +30,5 @@ npm install
 npm run build
 
 
-
-
-
+cd $dir
+./devops/deploy_scripts/lambda/deploy_lambda.sh
