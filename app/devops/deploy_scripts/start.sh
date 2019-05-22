@@ -8,7 +8,7 @@ cd ..
 dir="$(pwd)"
 echo $dir #should be app
 
-./devops/deploy_scripts/start_api
+./devops/deploy_scripts/start_api.sh
 
 
 cd $dir
