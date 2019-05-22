@@ -3,11 +3,15 @@ v=DKIM1; h=sha256; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtdNUU8C2
 
 
 TXT:
-@
-v=spf1 mx -all
+
+*._report._dmarc.gmail.com
+v=DMARC1
 
 _dmarc
-v=DMARC1; p=none; rua=mailto:russ@russjohnson.us; ruf=mailto:russ@russjohnson.us; fo=1
+v=DMARC1; p=none; rua=mailto:russ@russjohnson.us; ruf=mailto:russ@russjohnson.us;
+
+v=DMARC1; p=none; rua=mailto:russ@russjohnson.us; ruf=mailto:russ@russjohnson.us;
+
 
 mail._domainkey.greatlakescode.us
 v=DKIM1; h=sha256; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtdNUU8C25gpmuY4YVoPAa3vi+1DhAHQa5oG4sdYgNBpO8kkelzKPgHlpj2FTGboYXo3xEOHcaYDgTPsi91ys0V10ENirngg5zoK1ar6/tf7B6vfkgbbWlDuwhgZjCWGuUb0szahxmhiedbD9kt6gO7bZ46rqh7gul7AIPMRx7RPCha753mUtxp400rmrAeEW3g37U27pFIdH8l
@@ -19,5 +23,23 @@ v=spf1 mx -all
 *
 v=spf1 mx -all
 
+greatlakescode.us
+v=spf1 mx -all
+
+
+@
+v=spf1 mx -all
+
 @
 v=spf1 mx a ip4:52.206.232.250 ~all
+
+
+TXT _dmarc
+
+strict
+_dmarc
+v=DMARC1; p=quarantine; rua=mailto:russjohnson09@gmail.com; ruf=mailto:russjohnson09@gmail.com; adkim=r; aspf=r; rf=afrf
+
+not-strict
+_dmarc
+v=DMARC1; p=none; rua=mailto:russjohnson09@gmail.com; ruf=mailto:russjohnson09@gmail.com;

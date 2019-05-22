@@ -1,3 +1,12 @@
+#Get Mail Log
+cat /var/log/mail.log
+
+#Mail Queue mailq
+mailq
+
+##Clear Queue
+sudo postsuper -d ALL
+
 #Get DNS
 dig greatlakescode.us TXT
 dig _dmarc.greatlakescode.us TXT
