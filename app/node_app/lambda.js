@@ -1,3 +1,5 @@
+let error;
+
 //lambda entry point. Most of the time a class or file will be called from here.
 function handler (event,context,callback)
 {
