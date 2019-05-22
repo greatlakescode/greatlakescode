@@ -14,3 +14,7 @@ dist/
 app/node_app/.nyc_output/processinfo/index.json
 
 !.coveralls
+
+
+*.7z
+*.zip
