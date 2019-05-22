@@ -11,6 +11,7 @@ echo $dir #should be app
 
 cd node_app
 
+echo "in node director $(pwd)"
 
 echo "compile"
 tsc
