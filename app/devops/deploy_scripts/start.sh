@@ -16,6 +16,3 @@ cd react_frontend
 #TODO build and then change symbolic link for zero downtime
 npm run build
 
-
-cd $dir
-./devops/deploy_scripts/lambda/deploy_lambda.sh
