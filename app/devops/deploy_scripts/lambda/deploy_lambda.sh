@@ -11,7 +11,8 @@ echo $dir #should be app
 
 echo "assuming project is running and up to date"
 echo "zipping project $(pwd)"
-zip -r node_app.zip ./node_app/* -x .*node_modules*
+rm node_app.zip || true
+zip -r node_app.zip ./node_app/* -x *node_modules*
 
 #zip -r node_app.zip ./node_app/* -x ./node_app/dist*
 #zip -r node_app.zip ./node_app/* -x ./node_app/dist*
