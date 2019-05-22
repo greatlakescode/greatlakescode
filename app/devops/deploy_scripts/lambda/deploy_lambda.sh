@@ -19,6 +19,9 @@ tsc
 echo "npm install"
 npm install
 
-echo "zipping project"
+echo "zipping project $(pwd)"
+#sudo apt-get install zip gzip tar
+cd ..
+zip -r node_app.zip node_app
 
-
+#scp ubuntu@greatlakescode.us:/ubuntu/home/greatlakescode/app/node_app.zip
