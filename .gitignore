@@ -18,3 +18,6 @@ app/node_app/.nyc_output/processinfo/index.json
 
 *.7z
 *.zip
+
+
+*.pem
