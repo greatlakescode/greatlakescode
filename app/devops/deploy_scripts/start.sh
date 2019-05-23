@@ -14,7 +14,10 @@ echo $dir #should be app
 
 
 cd $dir
-cd react_frontend
+
+
 #TODO build and then change symbolic link for zero downtime
+cd react_frontend
+npm install
 npm run build
 
