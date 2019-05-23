@@ -8,5 +8,8 @@ cd ..
 cd ..
 dir="$(pwd)"
 
+cd $dir
+echo $dir
+
 ./devops/deploy_scripts/start.sh  >> /home/ubuntu/reboot.log 2>&1
 
