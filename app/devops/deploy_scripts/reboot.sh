@@ -1,5 +1,4 @@
 #!/bin/bash
-sudo su ubuntu
 cd "$(dirname "$0")"
 git pull
 dir="$(pwd)"
