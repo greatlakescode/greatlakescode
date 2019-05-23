@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "start.sh started"
+whoami
 cd "$(dirname "$0")"
 git pull
 dir="$(pwd)"

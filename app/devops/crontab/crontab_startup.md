@@ -6,4 +6,4 @@ sudo su ubuntu
 #On Reboot
 sudo crontab -e
 
-@reboot /home/ubuntu/greatlakescode/app/devops/deploy_scripts/reboot.sh >> /home/ubuntu/reboot.log 2>&1
+@reboot sudo /home/ubuntu/greatlakescode/app/devops/deploy_scripts/reboot.sh
