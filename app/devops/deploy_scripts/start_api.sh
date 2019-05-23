@@ -19,6 +19,6 @@ pm2 startOrGracefulReload greatlakescode.pm2.config.js
 pm2 startOrGracefulReload greatlakescode_backup.pm2.config.js
 
 
-
-cd $dir
-./devops/deploy_scripts/lambda/deploy_lambda.sh
+#diable deploy_lambda until I get it working consistently
+#cd $dir
+#./devops/deploy_scripts/lambda/deploy_lambda.sh
