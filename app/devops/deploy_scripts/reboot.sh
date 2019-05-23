@@ -10,6 +10,7 @@ dir="$(pwd)"
 
 cd $dir
 echo $dir
+echo "$(dir)/devops/deploy_scripts/start.sh"
 
-./devops/deploy_scripts/start.sh  >> /home/ubuntu/reboot.log 2>&1
+/bin/bash "$(dir)/devops/deploy_scripts/start.sh"  >> /home/ubuntu/reboot.log 2>&1
 
