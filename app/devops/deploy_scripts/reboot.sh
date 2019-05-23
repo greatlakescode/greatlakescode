@@ -1,4 +1,6 @@
 #!/bin/bash
+sudo su ubuntu
+whoami
 cd "$(dirname "$0")"
 git pull
 dir="$(pwd)"
