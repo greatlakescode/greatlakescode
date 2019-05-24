@@ -1,5 +1,4 @@
 import BaseUnitTests from "../BaseUnitTests";
-import Email from "../../../utils/email/Email";
 import EmailTransactional from "../../../utils/email/EmailTransactional";
 
 export default class EmailTests

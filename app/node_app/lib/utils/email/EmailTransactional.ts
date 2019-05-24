@@ -1,4 +1,5 @@
 import BaseUtil from "../BaseUtil";
+import EmailTransporter from "./EmailTransporter";
 
 const nodemailer = require('nodemailer');
 const sendmail = require('sendmail');
@@ -40,7 +41,7 @@ export default class EmailTransactional
         }
         this.transactionalEmailAddress = process.env.GREATLAKESCODE_TX_EMAIL;
 
-        this.transporter = nodemailer.createTransport({
+        this.transporter = new EmailTransporter({
             host: process.env.GREATLAKESCODE_TX_EMAIL_SMTP,
             auth: {
                 user: process.env.GREATLAKESCODE_TX_EMAIL_USER, // generated ethereal user
