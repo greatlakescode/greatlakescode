@@ -4,3 +4,6 @@
 
 [![Code Climate](https://codeclimate.com/github/greatlakescode/greatlakescode/badges/gpa.svg)](https://codeclimate.com/github/greatlakescode/greatlakescode)
 
+#Greatlakescode
+This repo is for maintaining the greatlakescode project.
+The main website is located at greatlakescode.us.
