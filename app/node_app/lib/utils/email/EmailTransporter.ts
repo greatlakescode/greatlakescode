@@ -11,7 +11,8 @@ export default class EmailTransporter
     transporter;
 
 
-    defaultFrom = `baylee.wilderman@ethereal.email`;
+    // defaultFrom = `baylee.wilderman@ethereal.email`;
+    defaultFrom = `russj@greatlakescode.us`;
 
     constructor(opts?) {
         super(opts);
@@ -43,13 +44,19 @@ export default class EmailTransporter
 
     async initEtheral()
     {
+        // this.transporter = nodemailer.createTransport({
+        //     host: "smtp.ethereal.email",
+        //     auth: {
+        //         user: `baylee.wilderman@ethereal.email`, // generated ethereal user
+        //         pass: `uyV7rQvvwbWRxwTqms` // generated ethereal password
+        //     }
+        // });
+
         this.transporter = nodemailer.createTransport({
-            host: "smtp.ethereal.email",
-            port: 587,
-            secure: false, // true for 465, false for other ports
+            host: "smtp.zoho.com",
             auth: {
-                user: `baylee.wilderman@ethereal.email`, // generated ethereal user
-                pass: `uyV7rQvvwbWRxwTqms` // generated ethereal password
+                user: `russj@greatlakescode.us`, // generated ethereal user
+                pass: `i1l4r5h6m7` // generated ethereal password
             }
         });
     }
@@ -94,12 +101,18 @@ export default class EmailTransporter
     {
         let info = await this.transporter.sendMail({
             from: this.defaultFrom, // sender address
-            to: "russj@detroitsoftware.com", // list of receivers
+            // to: sendOpts.to, // list of receivers
+            // to: [`invalid@foo.com`], // list of receivers
+            // to: `russj@greatlakescode.us`,
+            to: `russjohnson09@gmail.com`,
+
             // to: "russjohnson09@gmail.com", // list of receivers
             subject: "Hello ✔", // Subject line
             text: "Hello world?", // plain text body
             html: "<b>Hello world?</b>" // html body
         });
+
+
         console.log(`sendWithNodeMailer`,info);
     }
 

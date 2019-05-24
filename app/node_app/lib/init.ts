@@ -4,7 +4,7 @@ import MongoDBHelper from "./utils/MongoDBHelper";
 module.exports = async function (opts?) {
 
     const path = require('path');
-    let envConfigFile = path.resolve(`..`,`..`,`..`,`.env`);
+    let envConfigFile = path.resolve(__dirname,`..`,`.env`);
     console.log(`envConfigFile`,envConfigFile);
     require('dotenv').config({
         path: envConfigFile

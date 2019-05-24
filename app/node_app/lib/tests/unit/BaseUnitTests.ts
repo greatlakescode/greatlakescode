@@ -61,7 +61,7 @@ export default class SecureDocsTests
     static async runAsScript()
     {
         try {
-            console.log(`${this.constructor.name} runAsScript`)
+            console.log(`${this.constructor.name} runAsScript`);
             await require('./../../init')();
             await this.createAndRun();
             console.log(`finished tests`);
