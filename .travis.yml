@@ -26,3 +26,9 @@ script:
 cache:
   directories:
     - app/node_app/node_modules
+notifications:
+  email:
+    recipients:
+    - russj@greatlakescode.us
+    on_success: always # default: change, never
+    on_failure: always # default: always
