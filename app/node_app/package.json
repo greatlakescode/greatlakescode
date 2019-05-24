@@ -45,6 +45,15 @@
       "text",
       "lcov"
     ],
+    "exclude": [
+      "**/*.spec.js",
+      "test/*",
+      "pm2/*",
+      "coverage/*",
+      "lambda.js",
+      "index.js",
+      "lambda/*"
+    ],
     "check-coverage": false,
     "branches": 80,
     "lines": 80,
