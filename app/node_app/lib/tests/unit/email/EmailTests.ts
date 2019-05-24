@@ -36,5 +36,5 @@ export default class EmailTests
 
 
 if (require.main === module) {
-    EmailTests.runAsScript();
+    EmailTests.runAsScript(true);
 }

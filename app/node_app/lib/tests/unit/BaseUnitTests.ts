@@ -1,4 +1,5 @@
 import MongoDBHelper from "../../utils/MongoDBHelper";
+import EmailTests from "./email/EmailTests";
 
 const path = require('path');
 
@@ -58,20 +59,38 @@ export default class SecureDocsTests
 
 
 
-    static async runAsScript()
+    static async runAsScript(exitOnComplete = false)
     {
         try {
             console.log(`${this.constructor.name} runAsScript`);
             await require('./../../init')();
             await this.createAndRun();
             console.log(`finished tests`);
-            setTimeout(() => {
-                process.exit(0);
-            },1000);
+            if (exitOnComplete)
+            {
+                setTimeout(() => {
+                    process.exit(0);
+                },1000);
+            }
+            else {
+                return true;
+
+            }
+
         }
         catch (e)
         {
             console.error(e);
+            if (exitOnComplete)
+            {
+                setTimeout(() => {
+                    process.exit(1);
+                },1000);
+            }
+            else {
+                return false;
+            }
+
         }
     }
 
@@ -81,5 +100,5 @@ export default class SecureDocsTests
 
 
 if (require.main === module) {
-
+    EmailTests.runAsScript(true);
 }
