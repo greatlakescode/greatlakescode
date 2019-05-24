@@ -1,24 +1,7 @@
 import BaseUtil from "../BaseUtil";
 import EmailTransporter from "./EmailTransporter";
 
-const nodemailer = require('nodemailer');
-const sendmail = require('sendmail');
-
-
-export default class EmailTransactional
-    extends BaseUtil {
-
-    constructor(opts?) {
-        super(opts);
-    }
-
-    static async create(opts?) {
-        let obj = new this();
-        await obj.init();
-        return obj;
-    }
-
-
+export default class EmailTransactional {
 
     static transporter;
     static transactionalEmailAddress;
