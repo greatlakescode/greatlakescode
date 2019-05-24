@@ -1,7 +1,5 @@
 import MongoDBHelper from "../../utils/MongoDBHelper";
-import EmailTests from "./email/EmailTests";
 
-const path = require('path');
 
 export default class SecureDocsTests
 {
@@ -98,7 +96,3 @@ export default class SecureDocsTests
 }
 
 
-
-if (require.main === module) {
-    EmailTests.runAsScript(true);
-}

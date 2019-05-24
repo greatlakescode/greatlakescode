@@ -3,6 +3,8 @@ import SecureDocsService from "../../../services/secure-docs/SecureDocsService";
 import App from "../../../App";
 const path = require('path');
 
+const expect = require('chai').expect;
+
 export default class SecureDocsTests
 {
 
@@ -61,14 +63,9 @@ export default class SecureDocsTests
         let doc = await this.secureDocsService.addDoc({
             filename: `test.txt`,
             file_absolute_path: testFile,
-            username: `russjohnson09@gmail.com`,
-            allowed_access: [
-                {
-                    type: 'email_verify',
-                    email: 'russjohnson09@gmail.com',
-                    expires: '0' //never expires
-                }
-            ],
+            user_email: `russj@greatlakescode.us`,
+            shared_email: `russj@greatlakescode.us`,
+            password: `1234`,
         });
 
         console.log(`created doc`,doc);
@@ -83,7 +80,14 @@ export default class SecureDocsTests
 
     async verifyDocRequestSend(doc)
     {
-        await this.secureDocsService.doVerifyEmailRequest(doc.id,'russjohnson09@gmail.com');
+        let response = await this.secureDocsService.doVerifyEmailRequest(
+            doc.id,
+            'russj@greatlakescode.us'
+        );
+
+        console.log(`doVerifyEmailRequest`,response);
+
+        expect(response.error).to.be.null;
 
     }
 

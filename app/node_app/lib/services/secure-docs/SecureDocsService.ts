@@ -17,6 +17,8 @@ export default class SecureDocsService
 
 {
 
+    static CODE_VERIFICATION_SENT = `CODE_VERIFICATION_SENT`;
+
     static appliedMigrations = false;
 
     steamRequest;
@@ -55,13 +57,12 @@ export default class SecureDocsService
 
     }
 
+    //Signed jwt that expires in x minutes.
     async sendEmailVerificationCode(emailAddress,docId)
     {
         //set verification code with 15 minute expiration.
 
         console.log(`sendEmailVerificationCode ${emailAddress}`);
-
-
 
     }
 
@@ -75,7 +76,6 @@ export default class SecureDocsService
     {
         let docs = this.secureDocsCollection;
 
-        //
         let result = await docs.findOne(
             {
                 id,
@@ -85,11 +85,12 @@ export default class SecureDocsService
 
         if (!result)
         {
+            let error = `Failed to get doc.`;
             console.log(`failed to get doc`);
             return {
                 status: `FAILED`,
-                error: true,
-                message: `Failed to get doc.`
+                error: error,
+                message: error
             };
         }
         console.log(`got doc `,result);
@@ -98,11 +99,10 @@ export default class SecureDocsService
         {
             await this.sendEmailVerificationCode(emailAddress,id);
             return {
-                status: `CODE_VERIFICATION_SENT`,
-                error: true,
-                message: `Failed to get doc.`
+                status: SecureDocsService.CODE_VERIFICATION_SENT,
+                error: null,
+                message: `Sent Code verification.`
             };
-            //send email to emailAddress to verify request
 
         }
         else {
@@ -140,11 +140,14 @@ export default class SecureDocsService
         id?,
         file_absolute_path,
         filename,
-        username,
-        allowed_access:Array<
-            {
-                type,email?,expires?
-            }>
+        user_email,
+        shared_email,
+        password,
+        // username,
+        // allowed_access:Array<
+        //     {
+        //         type,email?,expires?
+        //     }>
     })
     {
         if (!doc.id)
