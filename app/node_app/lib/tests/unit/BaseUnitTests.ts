@@ -1,7 +1,7 @@
 import MongoDBHelper from "../../utils/MongoDBHelper";
 
 
-export default class SecureDocsTests
+export default class BaseUnitTests
 {
 
     db;

@@ -3,6 +3,7 @@ import BaseService from "../BaseService";
 import User from "../../data/User";
 import MongoDBHelper from "../../utils/MongoDBHelper";
 import JsonWriter from "../../utils/file/json/JsonWriter";
+import Password from "../../utils/crypto/Password";
 
 
 
@@ -143,6 +144,7 @@ export default class SecureDocsService
         user_email,
         shared_email,
         password,
+        // shared_token,
         // username,
         // allowed_access:Array<
         //     {
@@ -154,6 +156,13 @@ export default class SecureDocsService
         {
             doc.id = MongoDBHelper.getId();
         }
+
+        if (!doc.password)
+        {
+            throw new Error(`password is required`);
+        }
+        doc.password = await Password.hash(doc.password);
+        // doc.shared_token = await Token
 
         let docs = this.secureDocsCollection;
 
