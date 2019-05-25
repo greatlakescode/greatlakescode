@@ -73,30 +73,8 @@ export default class App {
 
     async init() {
 
-        // process.env._GREATLAKESCODE_REPO_PATH =
-        //     path.resolve(`..`,`..`,`..`);
-        //
-        // process.env._GREATLAKESCODE_TMP_PATH =
-        //     path.resolve(process.env._GREATLAKESCODE_REPO_PATH,`files`,`tmp`);
-        //
-        // process.env._GREATLAKESCODE_FILE_PATH =
-        //     path.resolve(process.env._GREATLAKESCODE_REPO_PATH,`files`);
-        //
-        // console.log(`init`,process.env._GREATLAKESCODE_REPO_PATH,
-        //     process.env._GREATLAKESCODE_TMP_PATH,
-        // );
-        //
-        // console.log(`init`,process.env._GREATLAKESCODE_REPO_PATH,
-        //     process.env._GREATLAKESCODE_FILE_PATH,
-        // );
 
         this.start_date = new Date();
-
-        // BaseFileWriter
-
-        // throw new Error(`error`);
-        //TODO watch .env
-//https://github.com/remy/nodemon/issues/1357
 
         this.mongoDB = await MongoDBHelper.getDB();
 
@@ -116,16 +94,16 @@ export default class App {
         console.log(`port ${port}`);
         this.port = port;
         this.basicAppSetup();
-//3000 for the main app testing locally, 4000 are reserved for standalone
-//on production 3 main processes are running. 1 is dedicated as the main in app2.pm2.config.js and
-//the other 2 are backup processes. But they all process requests in the same way.
-//IP hashing is setup to allow for socket io type processing.
 
         await this.addControllers();
 
 
     }
 
+    /**
+     * Main entry point for the rest api
+     * @param opts
+     */
     static async startApp(opts?) {
         let mainApp = new App(opts);
 
@@ -389,6 +367,9 @@ export default class App {
 
 
     basicAppSetup() {
+        let multer  = require('multer');
+        let upload = multer();
+
         let app = this.app;
         app.all('*', (req, res, next) => {
             res.header("Access-Control-Allow-Origin", "*");
@@ -405,8 +386,17 @@ export default class App {
             next();
         });
 
+
+        /**
+         * allow formdata
+         */
+        app.post('*', upload.none(), function (req, res, next) {
+            next();
+        });
+
         let bodyParser = require('body-parser');
-        app.use(bodyParser.urlencoded());
+        // app.use(bodyParser.urlencoded());
+        app.use(bodyParser.urlencoded({ extended: true }));
         app.use(bodyParser.json());
 
 

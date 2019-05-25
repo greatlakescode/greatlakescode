@@ -85,16 +85,25 @@ export default class UserDocsControllerTests
 
         console.log(url,result);
 
+        let {body} = result;
         expect(result.statusCode).to.be.equal(200);
+        body = JSON.parse(body);
+        expect(body.set_headers).not.to.be.undefined;
+        expect(body.set_headers.x_token).not.to.be.undefined;
+
+        this.user.x_token = body.set_headers.x_token;
+
+
     }
 
     async getSelf()
     {
+        let {x_token} = this.user;
         let url = `/api/user-docs/me`;
         let result = await this.requestHelper.get({
             url,
             headers: {
-
+                x_token
             }
         });
 
