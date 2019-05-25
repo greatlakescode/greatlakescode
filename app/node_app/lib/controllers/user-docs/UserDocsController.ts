@@ -57,11 +57,10 @@ export default class UserDocsController
         //cache games daily / hourly?
         router.get('/',(req,res) => {
             res.send(`hello from secure doc controller
-/public/secure-doc/:id request a secure doc
+/my/doc/:id/download request a doc as a download
+/my/doc/:id request a doc as a download
 
-/my/secure-doc get list of users secure docs
-
-/secure-doc/:id get doc by id
+/my/doc get list of users docs
             `);
         });
 
@@ -92,6 +91,11 @@ export default class UserDocsController
             let user = req.locals._user;
             res.json(user);
         });
+
+
+        router.get('/my', (req, res) => {
+
+        })
 
 
 

@@ -35,18 +35,38 @@ export default class RequestHelper {
 
     }
 
+    //https://www.npmjs.com/package/request
+    async postFormData(opts:{
+        url, //either relative or exact
+        formData?
+        headers?,
+        // qs?
+    })
+    {
+        let {url,headers,formData} = opts;
 
+        return this.request({
+            method: 'POST',
+            url,
+            headers,
+            formData
+        });
+
+    }
+
+    //https://www.npmjs.com/package/request
     async request(opts:{
         method,
         url,
         headers,
-        qs
+        qs?,
+        formData?
     }):Promise<{
         body
     }>
     {
 
-        let {url,headers,qs,method} = opts;
+        let {url,headers,qs,method,formData} = opts;
 
 
         if (url.indexOf('://') === -1)
@@ -58,23 +78,31 @@ export default class RequestHelper {
             method,
             url,
             headers,
-            qs
+            qs,
+            formData
         };
 
         //TODO log request/ response times
         let result:any = await (async function() {
-            return new Promise((r) => {
-                // let result:any = {};
-                request(requestOpts, (err,response,body) => {
-                    let result:any = {
-                        statusCode: response.statusCode,
-                        headers: response.headers,
-                        err,
-                        // response,
-                        body
-                    };
-                    r(result);
-                })
+            return new Promise((r,reject) => {
+                try {
+                    request(requestOpts, (err,response,body) => {
+                        response = response || {};
+                        let result:any = {
+                            statusCode: response.statusCode,
+                            headers: response.headers,
+                            err,
+                            // response,
+                            body
+                        };
+                        r(result);
+                    });
+                }
+                catch (e)
+                {
+                    reject(e);
+                }
+
 
             });
         })();

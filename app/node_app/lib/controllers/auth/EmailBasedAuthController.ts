@@ -1,5 +1,6 @@
 // const basicAuth = require('express-basic-auth');
 import BaseController from "../BaseController";
+import LoggingService from "../../services/logging/LoggingService";
 
 const MongoClient = require('mongodb').MongoClient;
 const jwt = require('jsonwebtoken');
@@ -11,6 +12,7 @@ export default class EmailBasedAuthController
 
 
     jwt_secret;
+    logService;
 
     get router()
     {
@@ -27,6 +29,12 @@ export default class EmailBasedAuthController
     }) {
 
         super(opts);
+
+
+        this.logService = new LoggingService({
+            db: this.db
+        });
+
         //https://medium.com/@siddharthac6/json-web-token-jwt-the-right-way-of-implementing-with-node-js-65b8915d550e
         this.jwt_secret = this.opts.JWT_SECRET || process.env.GREATLAKESCODE_EMAIL_BASED_AUTH_JWT_SECRET;
         if (!this.jwt_secret) {
@@ -64,7 +72,21 @@ export default class EmailBasedAuthController
         //check mongodb for user
         router.post(`/login`, async (req, res) => {
 
+            //TODO ip for all in req.locals like with user info...
+            let ip;
+
             let {username, password} = req.body;
+
+            await this.logService.doLog({
+                message: `Login attempt by user ${username} at ip ${ip}`
+            });
+
+            if (!username || !password)
+            {
+                return res.status(400).json({
+                    error: `username and password must be given`
+                });
+            }
 
             let users = await userCollection.find({
                 username

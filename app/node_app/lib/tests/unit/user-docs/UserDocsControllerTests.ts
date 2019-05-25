@@ -14,7 +14,7 @@ export default class UserDocsControllerTests
 
     db;
     userDocsService;
-    username = `russj@greatlakescode.us`;
+    user;
     requestHelper;
 
 
@@ -25,6 +25,16 @@ export default class UserDocsControllerTests
             db: this.db
         });
         this.requestHelper = new GlcRequestHelper();
+
+        let username =  process.env.GREATLAKESCODE_TEST_ADMIN_USERNAME;
+        let password = process.env.GREATLAKESCODE_TEST_ADMIN_PASSWORD;
+
+        this.user =
+            {
+                username,
+                password
+            }
+
     }
 
 
@@ -47,10 +57,50 @@ export default class UserDocsControllerTests
         expect(result.statusCode).to.be.equal(200);
 
 
+        await this.login();
+
+
+        await this.getSelf();
 
 
 
 
+    }
+
+
+    async login()
+    {
+        let {
+            username,
+            password
+        } = this.user;
+        let url = `/login`;
+        let result = await this.requestHelper.postFormData({
+            url,
+            formData: {
+                username,
+                password
+            }
+        });
+
+        console.log(url,result);
+
+        expect(result.statusCode).to.be.equal(200);
+    }
+
+    async getSelf()
+    {
+        let url = `/api/user-docs/me`;
+        let result = await this.requestHelper.get({
+            url,
+            headers: {
+
+            }
+        });
+
+        console.log(url,result);
+
+        expect(result.statusCode).to.be.equal(200);
     }
 
 
