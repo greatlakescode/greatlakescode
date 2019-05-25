@@ -25,6 +25,7 @@ export default class RequestHelper {
         let {url,headers,qs} = opts;
 
 
+
         return this.request({
             url,
             headers,
@@ -66,7 +67,7 @@ export default class RequestHelper {
                 // let result:any = {};
                 request(requestOpts, (err,response,body) => {
                     let result:any = {
-                        status: response.status,
+                        statusCode: response.statusCode,
                         headers: response.headers,
                         err,
                         // response,
@@ -79,21 +80,6 @@ export default class RequestHelper {
         })();
 
         return result;
-
-
-
-        // let requestOpts = {
-        //     method: 'GET',
-        //     url: 'https://api.openweathermap.org/data/2.5/weather',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     qs: {
-        //         zip,
-        //         APPID: self.OPEN_WEATHER_MAP_API_KEY
-        //     }
-        // };
-
 
     }
 

@@ -1,3 +1,5 @@
+import UserDocsController from "./controllers/user-docs/UserDocsController";
+
 require('source-map-support').install();
 const path = require('path');
 
@@ -194,6 +196,24 @@ export default class App {
             console.log(`initialize ${route}`);
 
             await SteamController.initController({
+                db,
+                router
+            });
+            let t2 = Date.now();
+            let d1 = t2 - t1;
+            console.log(`initialized ${route} in ${d1} (ms)`);
+        })();
+
+
+        //add user-docs
+        await (async function() {
+            let route = '/api/user-docs';
+            let router = express.Router();
+            app.use(route, router);
+            let t1 = Date.now();
+            console.log(`initialize ${route}`);
+
+            await UserDocsController.initController({
                 db,
                 router
             });
