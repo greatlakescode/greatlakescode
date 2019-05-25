@@ -92,10 +92,73 @@ export default class UserDocsController
             res.json(user);
         });
 
+        let multer  = require('multer');
+        let upload = multer({ dest: docsService.filepath });
 
-        router.get('/my', (req, res) => {
+        router.post('/my/doc',
+            upload.single('file'),
+            async (req, res) => {
+                let user = req.locals._user;
+                console.log(`my/doc`);
+                console.log(req.file, req.files);
 
-        })
+                // { fieldname: 'file',
+                //     originalname: 'download.pdf',
+                //     encoding: '7bit',
+                //     mimetype: 'application/pdf',
+                //     destination: 'C:\\Users\\lain\\greatlakescode\\files',
+                //     filename: '619b9e19bcb12f98178f3f4369bbf42b',
+                //     path: 'C:\\Users\\lain\\greatlakescode\\files\\619b9e19bcb12f98178f3f4369bbf42b',
+                //     size: 101310 } undefined
+
+                let userDoc = await docsService.addDoc({
+                    file_absolute_path: req.file.path,
+                    filename: req.file.originalname,
+                    username: user.username
+                })
+
+                // let userDocs = await docsService.getUserDocs(user.username);
+
+                res.json({
+                    data: userDoc
+                });
+            });
+
+
+    // /my/doc/:id request a doc as a download
+
+    // /my/doc get list of users docs
+        router.get('/my/doc', async (req, res) => {
+            let user = req.locals._user;
+            let userDocs = await docsService.getUserDocs(user.username);
+
+            res.json({
+                data: userDocs
+            });
+        });
+
+
+
+        router.get('/my/doc/:id', async (req, res) => {
+            let user = req.locals._user;
+            let userDocs = await docsService.getUserDoc(user.username,
+                req.params.id);
+            res.json({
+                data: userDocs
+            });
+        });
+
+        // /my/doc/:id/download request a doc as a download
+        router.get('/my/doc/:id/download', async (req, res) => {
+            let user = req.locals._user;
+            let userDocs = await docsService.getUserDoc(user.username,
+                req.params.id);
+
+            //TODO sendfile here.
+            res.json({
+                data: userDocs
+            });
+        });
 
 
 

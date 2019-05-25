@@ -68,9 +68,13 @@ export default class EmailBasedAuthController
             next();
         });
 
+        let multer  = require('multer');
+        let upload = multer();
 
         //check mongodb for user
-        router.post(`/login`, async (req, res) => {
+        router.post(`/login`,
+            upload.none(),
+            async (req, res) => {
 
             //TODO ip for all in req.locals like with user info...
             let ip;

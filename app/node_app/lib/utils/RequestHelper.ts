@@ -11,6 +11,12 @@ export default class RequestHelper {
 
 
     baseUrl = `http://localhost:3000`;
+    defaultHeaders = {};
+
+    setDefaultHeaders(defaultHeaders)
+    {
+        this.defaultHeaders = defaultHeaders;
+    }
 
 
     async get(opts:{
@@ -67,6 +73,8 @@ export default class RequestHelper {
     {
 
         let {url,headers,qs,method,formData} = opts;
+
+        headers = Object.assign({},this.defaultHeaders,headers);
 
 
         if (url.indexOf('://') === -1)

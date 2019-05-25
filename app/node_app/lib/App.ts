@@ -390,9 +390,9 @@ export default class App {
         /**
          * allow formdata
          */
-        app.post('*', upload.none(), function (req, res, next) {
-            next();
-        });
+        // app.post('*', upload.none(), function (req, res, next) {
+        //     next();
+        // });
 
         let bodyParser = require('body-parser');
         // app.use(bodyParser.urlencoded());

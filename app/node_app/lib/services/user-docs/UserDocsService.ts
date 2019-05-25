@@ -58,6 +58,16 @@ export default class UserDocsService
         return result;
     }
 
+    async getUserDoc(username,id)
+    {
+        let result = this.userDocsCollection.findOne({
+            username,
+            id
+        });
+        return result; //n, ok
+    }
+
+
     async deleteUserDoc(username,id)
     {
         let result = this.userDocsCollection.deleteOne({

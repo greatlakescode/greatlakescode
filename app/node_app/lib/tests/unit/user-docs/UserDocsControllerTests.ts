@@ -4,6 +4,7 @@ import App from "../../../App";
 import BaseUnitTests from "../BaseUnitTests";
 import UserDocsService from "../../../services/user-docs/UserDocsService";
 import GlcRequestHelper from "../../../utils/request/GlcRequestHelper";
+import RequestHelper from "../../../utils/RequestHelper";
 const path = require('path');
 
 const expect = require('chai').expect;
@@ -59,9 +60,13 @@ export default class UserDocsControllerTests
 
         await this.login();
 
+        this.requestHelper.setDefaultHeaders({
+            'X-TOKEN': this.user.x_token
+        });
 
         await this.getSelf();
 
+        await this.uploadFile();
 
 
 
@@ -96,6 +101,34 @@ export default class UserDocsControllerTests
 
     }
 
+
+    async uploadFile()
+    {
+        let fs = require('fs');
+
+        let repoPath = App.repoPath;
+        let testFile = path.resolve(repoPath,'app/node_app/lib/tests/unit/user-docs/test.txt');
+
+
+        let url = `/api/user-docs/my/doc`;
+
+        let formData = {
+            file:  fs.createReadStream(testFile),
+        };
+
+        let result = await this.requestHelper.postFormData({
+            url,
+            formData
+
+        });
+
+
+        console.log(`uploaded file`,result);
+
+        expect(result.statusCode).to.be.equal(200);
+
+    }
+
     async getSelf()
     {
         let {x_token} = this.user;
@@ -103,11 +136,11 @@ export default class UserDocsControllerTests
         let result = await this.requestHelper.get({
             url,
             headers: {
-                x_token
+                'X-TOKEN': x_token
             }
         });
 
-        console.log(url,result);
+        console.log(url,result,x_token);
 
         expect(result.statusCode).to.be.equal(200);
     }

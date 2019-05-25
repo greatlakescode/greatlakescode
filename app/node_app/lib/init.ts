@@ -13,7 +13,7 @@ module.exports = async function (opts?) {
     console.log(`init`);
 
     process.env._GREATLAKESCODE_REPO_PATH =
-        path.resolve(`..`,`..`);
+        path.resolve(__dirname,`..`,`..`,`..`);
 
     process.env._GREATLAKESCODE_TMP_PATH =
         path.resolve(process.env._GREATLAKESCODE_REPO_PATH,`files`,`tmp`);
