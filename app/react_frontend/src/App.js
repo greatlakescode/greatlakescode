@@ -20,6 +20,7 @@ import GroceryComponent from "./components/home/groceries/GroceryComponent";
 import SteamComponent from "./components/steam/SteamComponent";
 import ExampleListComponent from "./components/examples/ExampleListComponent";
 import ExampleComponent from "./components/examples/ExampleComponent";
+import WebsocketComponent from "./components/websocket/WebsocketComponent";
 
 
 class App extends Component {
@@ -67,6 +68,7 @@ class App extends Component {
                     {<Route path="/steam" component={SteamComponent} />}
                     {<Route path="/example" component={ExampleComponent} />}
 
+                    {<Route path="/ws" component={WebsocketComponent} />}
 
                 </div>
 
