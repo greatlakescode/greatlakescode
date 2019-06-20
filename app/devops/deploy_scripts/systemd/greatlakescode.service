@@ -1,0 +1,9 @@
+[Unit]
+Description=greatlakescode
+
+[Service]
+User=ubuntu
+ExecStart=/home/ubuntu/greatlakescode/app/devops/deploy_scripts/reboot.sh
+
+[Install]
+WantedBy=multi-user.target
