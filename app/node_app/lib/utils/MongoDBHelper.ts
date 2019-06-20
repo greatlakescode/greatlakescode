@@ -22,8 +22,13 @@ export default class MongoDBHelper {
         this.client = client;
         let self = this;
 
-        return new Promise((resolve) => {
+        return new Promise((resolve,reject) => {
             client.connect(function (err) {
+                if (err)
+                {
+                    console.log(err);
+                    return reject(err);
+                }
                 console.log("Connected successfully to server");
                 const db = client.db(dbName);
                 console.log(`${self.constructor.name} fetching database ${dbName}`);

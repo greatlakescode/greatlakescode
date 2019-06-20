@@ -41,6 +41,30 @@ export default class RequestHelper {
 
     }
 
+    async postJson(opts:{
+        url,
+        json,
+        headers?,
+        qs?
+    })
+    {
+
+        opts.headers = opts.headers || {};
+        opts.headers['content-type'] = 'application/json';
+        let {url,headers,json,qs} = opts;
+
+        let body = JSON.stringify(json);
+
+        let requestOpts = {
+            method: 'POST',
+            url,
+            headers,
+            body,
+            qs,
+        }
+        return this.request(requestOpts);
+    }
+
     //https://www.npmjs.com/package/request
     async postFormData(opts:{
         url, //either relative or exact
