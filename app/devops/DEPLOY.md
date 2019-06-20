@@ -18,7 +18,17 @@ scp ubuntu@greatlakescode.us:/home/ubuntu/greatlakescode/app/node_app/.env .
 
 ##Add Reboot Scripts
 
-###PM2
+###Main Reboot Script
+sudo cp /home/ubuntu/greatlakescode/app/devops/deploy_scripts/systemd/greatlakescode.service /lib/systemd/system
+sudo ls /lib/systemd/system/greatlakescode.service
+sudo systemctl start greatlakescode
+sudo systemctl status greatlakescode
+sudo journalctl -u greatlakescode
+
+sudo systemctl enable greatlakescode
+
+
+###PM2 (skipped if main reboot takes care of startup)
 ubuntu@ip-172-31-41-60:~$ pm2 startup
 [PM2] Init System found: systemd
 [PM2] To setup the Startup Script, copy/paste the following command:

@@ -10,5 +10,9 @@ dir="$(pwd)"
 cd $dir
 echo $dir
 
+whoami
+
+#exit
+
 ./devops/deploy_scripts/start.sh
 

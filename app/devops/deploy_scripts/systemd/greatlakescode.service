@@ -2,8 +2,22 @@
 Description=greatlakescode
 
 [Service]
+Type=forking
 User=ubuntu
+LimitNOFILE=infinity
+LimitNPROC=infinity
+LimitCORE=infinity
+Environment=PATH=/usr/local/bin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+PIDFile=/home/ubuntu/.greatlakescode
 ExecStart=/home/ubuntu/greatlakescode/app/devops/deploy_scripts/reboot.sh
 
 [Install]
 WantedBy=multi-user.target
+
+
+#sudo cp /home/ubuntu/greatlakescode/app/devops/deploy_scripts/systemd/greatlakescode.service /lib/systemd/system
+#sudo ls /lib/systemd/system/greatlakescode.service
+#Place it in  folder with say a name of myfirst.service
+
+# sudo systemctl start greatlakescode
+
