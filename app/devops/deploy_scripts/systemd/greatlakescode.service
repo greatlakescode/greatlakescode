@@ -2,7 +2,7 @@
 Description=greatlakescode
 
 [Service]
-Type=forking
+#Type=forking
 User=ubuntu
 LimitNOFILE=infinity
 LimitNPROC=infinity
