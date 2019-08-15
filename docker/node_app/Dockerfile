@@ -8,12 +8,12 @@ RUN apt-get update
 RUN apt-get install git -y
 
 
-RUN apt-get install curl -Y
+RUN apt-get install curl -y
 
-RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 
 
-RUN apt-get install nodejs -Y
+RUN apt-get install nodejs -y
 RUN node -V
 RUN npm -v
 
