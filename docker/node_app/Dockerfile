@@ -71,6 +71,11 @@ RUN systemctl start nginx
 RUN systemctl enable nginx
 
 
+RUN npm install -g typescript
+
+
+
+
 EXPOSE 80
 
 COPY start.sh /start.sh
