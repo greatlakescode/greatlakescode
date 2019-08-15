@@ -63,8 +63,8 @@ ENV GREATLAKESCODE_MYSQL_ADMIN_PASSWORD=REPLACE_ME_PASSWORD
 #TODO can probably remove nginx from this. it is not required for node just php?
 
 
-COPY start.sh start.sh
-ENTRYPOINT ["start.sh"]
+COPY start.sh /start.sh
+ENTRYPOINT ["/start.sh"]
 
 #RUN apt-get update
 #RUN apt-get upgrade
@@ -93,3 +93,7 @@ ENTRYPOINT ["start.sh"]
 
 
 #https://wiki.mumble.info/wiki/Main_Page
+
+
+#docker build -t greatlakescode-node .
+#docker rm -f greatlakescode-node && docker run -dP -p 80:80 -p 443:443  --name greatlakescode-node greatlakescode-node:latest
