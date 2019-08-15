@@ -3,7 +3,9 @@
 echo "STARTING v 1.0"
 whoami
 
-#!/bin/bash
+echo "start nginx"
+service nginx start
+
 cd /greatlakescode/app/node_app
 git pull
 

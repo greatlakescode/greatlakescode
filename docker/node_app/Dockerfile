@@ -67,8 +67,9 @@ ENV GREATLAKESCODE_MYSQL_ADMIN_PASSWORD=REPLACE_ME_PASSWORD
 COPY localhost.conf /etc/nginx/sites-available/localhost.conf
 RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/
 
-RUN systemctl start nginx
-RUN systemctl enable nginx
+#https://stackoverflow.com/questions/24241292/dockerized-nginx-is-not-starting/31507431
+#RUN systemctl start nginx
+#RUN systemctl enable nginx
 
 
 RUN npm install -g typescript
