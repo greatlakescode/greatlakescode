@@ -116,6 +116,11 @@ EXPOSE 27017
 
 
 COPY start.sh /start.sh
+
+#mongodb volume
+VOLUME ["/data"]
+
+
 ENTRYPOINT ["/start.sh"]
 #CMD ["/bin/bash", "setup.sh"]
 
