@@ -69,17 +69,18 @@ class EnvHelper {
             };
         }
         else {
+            let prodDomainDefault = `api.russjohnsonio.icu`;
             obj = {
                 default: {
                     protocol: 'https',
-                    domain: 'api.greatlakescode.us',
+                    domain: prodDomainDefault,
                 },
                 notes: {
                     api_endpoint:  '/api/notes-api',
                     // host: 'http://localhost:3000',
                     protocol: 'https',
                     // port: 3000, //leave blank if not required?
-                    domain: 'api.greatlakescode.us',
+                    domain: prodDomainDefault,
                 },
                 auth: {
                     // api_endpoint:  '/api/auth',
@@ -90,14 +91,14 @@ class EnvHelper {
                     // host: 'http://localhost:3000',
                     protocol: 'https',
                     // port: 3000, //leave blank if not required?
-                    domain: 'api.greatlakescode.us',
+                    domain: prodDomainDefault,
                 },
                 kanban: {
                     api_endpoint:  '/api/kanban',
                     // host: 'http://localhost:3000',
                     protocol: 'https',
                     // port: 3000, //leave blank if not required?
-                    domain: 'api.greatlakescode.us',
+                    domain: prodDomainDefault,
                 },
             };
         }
