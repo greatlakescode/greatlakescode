@@ -78,11 +78,34 @@ RUN apt-get install wget
 RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | apt-key add -
 RUN echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.2.list
 RUN apt-get update
+
+
+#avoid tz interaction
+ENV TZ=America/New_York
+RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
+
+RUN apt-get install -y tzdata
+
+#Configuring tzdata
+#------------------
+#
+#Please select the geographic area in which you live. Subsequent configuration
+#questions will narrow this down by presenting a list of cities, representing
+#the time zones in which they are located.
+#
+#  1. Africa      4. Australia  7. Atlantic  10. Pacific  13. Etc
+#  2. America     5. Arctic     8. Europe    11. SystemV
+#  3. Antarctica  6. Asia       9. Indian    12. US
+#Geographic area: 12
+
+#RUN timedatectl list-timezones
+#RUN cat /etc/timezone
 RUN apt-get install -y mongodb-org
 
 
 
 EXPOSE 80
+
 
 COPY start.sh /start.sh
 ENTRYPOINT ["/start.sh"]
