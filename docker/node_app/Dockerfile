@@ -102,6 +102,7 @@ RUN apt-get install -y tzdata
 #RUN cat /etc/timezone
 RUN apt-get install -y mongodb-org
 
+RUN mkdir -p /data/db
 
 
 EXPOSE 80

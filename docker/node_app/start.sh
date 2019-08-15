@@ -3,8 +3,11 @@
 echo "STARTING v 1.0"
 whoami
 
+#TODO better way of doing this with a service?
 echo "mongodb start"
-service mongod start
+#service mongod start
+#-logpath data/db/log
+mongod --dbpath=/data/db &
 
 echo "start nginx"
 service nginx start
