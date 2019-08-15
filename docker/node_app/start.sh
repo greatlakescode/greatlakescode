@@ -3,6 +3,17 @@
 echo "STARTING v 1.0"
 whoami
 
+echo "stat php-fpm"
+
+/etc/init.d/php7.2-fpm restart
+
+echo "mysql start"
+service mysql start
+mysql -uroot -e "select 1;"
+mysql -uroot -e "select 1;"
+#mysql -uroot -e "GRANT ALL ON *.* TO root IDENTIFIED BY 'root'";
+
+
 #TODO better way of doing this with a service?
 echo "mongodb start"
 #service mongod start

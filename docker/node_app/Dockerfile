@@ -101,7 +101,37 @@ RUN npm install
 #prebuilt so something is available immediately
 RUN npm run build
 
+
+WORKDIR /
+#TODO could have wordpress as its own image. doing this for now.
+RUN git clone https://github.com/russjohnson09/kaneesha_wordpress.git
+
+#RUN apt-get install sudo -E apt-get -q -y install mysql-server
+RUN apt-get -q -y install mysql-server
+EXPOSE 3306
+
+
+COPY mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
+#RUN php -v
+
+#RUN mysql -e "select 1"
+#RUN service mysql start && mysql -e "select 1"
+
+
+RUN apt-get install php -y
+RUN apt-get install php-fpm -y
+RUN apt-get install php-fpm php-mysql -y
+RUN apt-get install nano -y
+
+COPY wp.conf /etc/nginx/sites-available/wp.conf
+RUN ln -s /etc/nginx/sites-available/wp.conf /etc/nginx/sites-enabled/
+
 RUN mkdir -p /public
+
+
+RUN mkdir -p  /run/php/
+
+COPY www.conf /etc/php/7.2/fpm/pool.d/www.conf
 
 
 
@@ -113,6 +143,9 @@ EXPOSE 80
 EXPOSE 3000
 #mongodb
 EXPOSE 27017
+
+#wordpress
+EXPOSE 9001
 
 
 COPY start.sh /start.sh
@@ -154,10 +187,18 @@ ENTRYPOINT ["/start.sh"]
 
 
 #docker build -t greatlakescode-node .
-#docker rm -f greatlakescode-node && docker run --mount source=mongo,target=/data -dP -p 3001:80 -p 27017:27017 -p 3000:3000  --name greatlakescode-node greatlakescode-node:latest && docker logs greatlakescode-node -f
+#docker rm -f greatlakescode-node && docker run --mount source=mongo,target=/data --mount source=mysql,target=/var/lib/mysql -dP -p 3001:80 -p 27017:27017 -p 3000:3000 -p 3306:3306  --name greatlakescode-node greatlakescode-node:latest && docker logs greatlakescode-node -f
+
+
+#docker run --mount source=mongo,target=/data --mount source=mysql,target=/var/lib/mysql -dP -p 3306:3306  --name greatlakescode-node greatlakescode-node:latest && docker logs greatlakescode-node -f
+#docker run --mount source=mongo,target=/data --mount source=mysql,target=/var/lib/mysql -dP  --name greatlakescode-node greatlakescode-node:latest && docker logs greatlakescode-node -f
 
 #not usable for a little bit.
 #docker logs greatlakescode-node -f
 
 
 #docker exec -it greatlakescode-node /bin/bash
+
+
+
+#docker rm -f greatlakescode-node && docker run --mount source=mongo,target=/data --mount source=mysql,target=/var/lib/mysql -dP  --name greatlakescode-node greatlakescode-node:latest && docker exec -it greatlakescode-node /bin/bash
