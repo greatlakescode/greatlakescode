@@ -65,7 +65,7 @@ ENV GREATLAKESCODE_MYSQL_ADMIN_PASSWORD=REPLACE_ME_PASSWORD
 #TODO can probably remove nginx from this. it is not required for node just php?
 
 COPY localhost.conf /etc/nginx/sites-available/localhost.conf
-RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/
+RUN ln -s /etc/nginx/sites-available/localhost.conf /etc/nginx/sites-enabled/
 
 #https://stackoverflow.com/questions/24241292/dockerized-nginx-is-not-starting/31507431
 #RUN systemctl start nginx
