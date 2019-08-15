@@ -63,7 +63,7 @@ ENV GREATLAKESCODE_MYSQL_ADMIN_PASSWORD=REPLACE_ME_PASSWORD
 #TODO can probably remove nginx from this. it is not required for node just php?
 
 
-COPY start.sh
+COPY start.sh start.sh
 ENTRYPOINT ["start.sh"]
 
 #RUN apt-get update
