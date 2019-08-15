@@ -33,6 +33,14 @@ RUN pwd && npm install
 
 RUN npm install -g pm2
 
+WORKDIR /greatlakescode/app/react_frontend
+
+
+RUN npm install
+RUN npm run build
+
+
+
 
 #RUN apt-get update
 #RUN apt-get upgrade
