@@ -2,3 +2,7 @@
 
 
 whoami
+
+
+
+tail -f

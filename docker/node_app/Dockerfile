@@ -65,6 +65,7 @@ ENV GREATLAKESCODE_MYSQL_ADMIN_PASSWORD=REPLACE_ME_PASSWORD
 
 COPY start.sh /start.sh
 ENTRYPOINT ["/start.sh"]
+#CMD ["/bin/bash", "setup.sh"]
 
 #RUN apt-get update
 #RUN apt-get upgrade
