@@ -97,12 +97,15 @@ RUN ln -s /etc/nginx/sites-available/localhost.conf /etc/nginx/sites-enabled/
 
 
 
+RUN mkdir -p /public
+
 
 
 
 
 
 EXPOSE 80
+EXPOSE 27017
 
 
 COPY start.sh /start.sh
@@ -139,7 +142,7 @@ ENTRYPOINT ["/start.sh"]
 
 
 #docker build -t greatlakescode-node .
-#docker rm -f greatlakescode-node && docker run -dP -p 80:80 -p 443:443  --name greatlakescode-node greatlakescode-node:latest && docker logs greatlakescode-node -f
+#docker rm -f greatlakescode-node && docker run -dP -p 80:80 -p 443:443 -p 27017:27017  --name greatlakescode-node greatlakescode-node:latest && docker logs greatlakescode-node -f
 
 #not usable for a little bit.
 #docker logs greatlakescode-node -f
