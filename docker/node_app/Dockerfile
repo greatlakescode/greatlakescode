@@ -115,4 +115,8 @@ ENTRYPOINT ["/start.sh"]
 #docker build -t greatlakescode-node .
 #docker rm -f greatlakescode-node && docker run -dP -p 80:80 -p 443:443  --name greatlakescode-node greatlakescode-node:latest
 
+#not usable for a little bit.
+#docker logs greatlakescode-node -f
+
+
 #docker exec -it greatlakescode-node /bin/bash

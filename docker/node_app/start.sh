@@ -25,4 +25,7 @@ cd /greatlakescode/app/react_frontend
 npm install
 npm run build
 
-/bin/bash
+pm2 logs
+
+
+tail -f /dev/null
