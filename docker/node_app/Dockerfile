@@ -71,6 +71,7 @@ RUN systemctl start nginx
 RUN systemctl enable nginx
 
 
+EXPOSE 80
 
 COPY start.sh /start.sh
 ENTRYPOINT ["/start.sh"]

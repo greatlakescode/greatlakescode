@@ -9,4 +9,4 @@
 #tail -f
 #
 #
-#/bin/bash
+/bin/bash
