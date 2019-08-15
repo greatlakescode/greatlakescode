@@ -118,7 +118,7 @@ EXPOSE 27017
 COPY start.sh /start.sh
 
 #mongodb volume
-VOLUME ["/data"]
+#VOLUME ["/data"]
 
 
 ENTRYPOINT ["/start.sh"]
@@ -154,7 +154,7 @@ ENTRYPOINT ["/start.sh"]
 
 
 #docker build -t greatlakescode-node .
-#docker rm -f greatlakescode-node && docker run -dP -p 3001:80 -p 27017:27017 -p 3000:3000  --name greatlakescode-node greatlakescode-node:latest && docker logs greatlakescode-node -f
+#docker rm -f greatlakescode-node && docker run --mount source=mongo,target=/data -dP -p 3001:80 -p 27017:27017 -p 3000:3000  --name greatlakescode-node greatlakescode-node:latest && docker logs greatlakescode-node -f
 
 #not usable for a little bit.
 #docker logs greatlakescode-node -f
