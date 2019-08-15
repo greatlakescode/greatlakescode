@@ -7,7 +7,8 @@ whoami
 echo "mongodb start"
 #service mongod start
 #-logpath data/db/log
-mongod --bindip=0.0.0.0 --dbpath=/data/db &
+#mongod --bindip=0.0.0.0 --dbpath=/data/db &
+mongod  --bind_ip_all  --dbpath=/data/db &
 
 echo "start nginx"
 service nginx start
