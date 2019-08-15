@@ -4,7 +4,27 @@
 FROM ubuntu:18.04
 
 
-RUN git clone 
+RUN apt-get update
+RUN apt-get install git -y
+
+
+RUN apt-get install curl -Y
+
+RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+
+
+RUN apt-get install nodejs -Y
+RUN node -V
+RUN npm -v
+
+
+RUN nginx -v
+
+RUN git clone https://github.com/greatlakescode/greatlakescode.git
+
+RUN cd /greatlakescode/app/node_app
+
+RUN npm install
 
 
 #RUN apt-get update
