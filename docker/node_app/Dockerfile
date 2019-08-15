@@ -59,6 +59,13 @@ ENV GREATLAKESCODE_MYSQL_ADMIN=greatlakescode_admin
 ENV GREATLAKESCODE_MYSQL_ADMIN_PASSWORD=REPLACE_ME_PASSWORD
 
 
+#nginx configuration for serving frontend
+#TODO can probably remove nginx from this. it is not required for node just php?
+
+
+COPY start.sh
+ENTRYPOINT ["start.sh"]
+
 #RUN apt-get update
 #RUN apt-get upgrade
 
