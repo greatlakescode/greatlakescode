@@ -15,7 +15,7 @@ export class Navbar extends React.Component {
         {
             return (
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <Link className="navbar-brand" to="/app">Coderuss</Link>
+                    <Link className="navbar-brand" to="/app">Greatlakescode</Link>
 
                     {/*<a  href="/">Coderuss</a>*/}
                     <button className="navbar-toggler" type="button" data-toggle="collapse"

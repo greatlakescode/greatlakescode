@@ -29,7 +29,7 @@
     "socket.io-client": "^2.1.1"
   },
   "scripts": {
-    "start": "cross-env PORT=4201 REACT_APP_API_ENV=local react-scripts start",
+    "start": "cross-env PORT=4201 REACT_APP_API_ENV=local REACT_APP_API_PORT=3005 react-scripts start",
     "start:prod": "REACT_APP_ENV=prod react-scripts start",
     "build": "react-scripts build",
     "build:prod": "REACT_APP_ENV=prod react-scripts build",

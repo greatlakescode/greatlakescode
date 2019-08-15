@@ -26,7 +26,7 @@ export default class DatadogRequest
             metric,
             type?, //defaults as gauge
             interval?,
-            points,
+            points:Array<Array<any>>, //[[POSIX_timestamp, numeric_value]
             host?,
             tags?
         }>,
@@ -38,21 +38,68 @@ export default class DatadogRequest
             api_key: this.api_key
         };
         return this.postJson({
+            qs,
             url,
             json: seriesJsonRequest
         });
+    }
+
+    async postMetricCount(metricJson:{
+        metric,
+        interval?,
+        points:Array<{ //allow for an array of arrays or a more explicit typing to add readability
+            timestamp?, //POSIX_timestamp
+            value
+        } | Array<any>>,
+        host?,
+        tags?
+    })
+    {
+        let {metric,interval,points,host,tags} = metricJson;
+
+        return this.postMetric({
+            metric,
+            interval,
+            points,
+            host,
+            tags,
+            type: 'count'
+        })
     }
 
     async postMetric(metric:{
         metric,
         type?, //defaults as gauge
         interval?,
-        points,
+        points:Array<{ //allow for an array of arrays or a more explicit typing to add readability
+            timestamp?, //POSIX_timestamp
+            value
+        } | Array<any>>,
         host?,
         tags?
-    })
+    }):Promise<{
+        statusCode,
+        headers,
+        err,
+        body
+    }>
     {
-        return this.postMetricSeries({series:[metric]});
+        let points = (function(points:any) {
+            let result = [];
+            for (let point of points)
+            {
+                if (point.value)
+                {
+                    let timestamp = point.timestamp || Math.floor(Date.now() / 1000);
+                    result.push([timestamp,point.value]);
+                }
+            }
+            return result;
+        })(metric.points);
+
+        metric.points = points;
+        let series:any = [metric];
+        return this.postMetricSeries({series});
     }
 
 //     currenttime=$(date +%s)

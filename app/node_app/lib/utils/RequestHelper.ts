@@ -4,6 +4,8 @@ const request = require('request');
 
 export default class RequestHelper {
 
+
+    logErrors = true;
     constructor()
     {
 
@@ -46,7 +48,12 @@ export default class RequestHelper {
         json,
         headers?,
         qs?
-    })
+    }):Promise<{
+        statusCode,
+        headers,
+        err,
+        body
+    }>
     {
 
         opts.headers = opts.headers || {};
@@ -90,13 +97,18 @@ export default class RequestHelper {
         url,
         headers,
         qs?,
-        formData?
+        formData?,
+        body?
     }):Promise<{
+        statusCode,
+        headers,
+        err,
         body
     }>
     {
+        let self = this;
 
-        let {url,headers,qs,method,formData} = opts;
+        let {url,headers,qs,method,formData,body} = opts;
 
         headers = Object.assign({},this.defaultHeaders,headers);
 
@@ -111,7 +123,8 @@ export default class RequestHelper {
             url,
             headers,
             qs,
-            formData
+            formData,
+            body
         };
 
         //TODO log request/ response times
@@ -121,12 +134,23 @@ export default class RequestHelper {
                     request(requestOpts, (err,response,body) => {
                         response = response || {};
                         let result:any = {
+                            meta: {
+                                requestOpts,
+                            },
                             statusCode: response.statusCode,
                             headers: response.headers,
                             err,
                             // response,
                             body
                         };
+                        if (!(result.statusCode< 400) && self.logErrors)
+                        {
+                            console.error({
+                                requestOpts,
+                                result
+                                // logErrors
+                            })
+                        }
                         r(result);
                     });
                 }
