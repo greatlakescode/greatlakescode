@@ -4,42 +4,66 @@
 FROM ubuntu:18.04
 
 
+#avoid tz interaction
+#ENV TZ=America/New_York
+#RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
+#
+#RUN apt-get install -y tzdata
+
+#Configuring tzdata
+#------------------
+#
+#Please select the geographic area in which you live. Subsequent configuration
+#questions will narrow this down by presenting a list of cities, representing
+#the time zones in which they are located.
+#
+#  1. Africa      4. Australia  7. Atlantic  10. Pacific  13. Etc
+#  2. America     5. Arctic     8. Europe    11. SystemV
+#  3. Antarctica  6. Asia       9. Indian    12. US
+#Geographic area: 12
+
+#RUN timedatectl list-timezones
+#RUN cat /etc/timezone
 RUN apt-get update
-RUN apt-get install git -y
+ENV TZ=America/New_York
+RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
+RUN mkdir -p /data/db
 
-
-RUN apt-get install curl -y
-
+RUN apt-get install git wget curl -y
+#RUN apt-get install git curl -y
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | apt-key add -
+RUN echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.2.list
+RUN apt-get update
 
+RUN apt-get install -y tzdata
+
+RUN apt-get install -y mongodb-org
+
+RUN apt-get install wget
 
 RUN apt-get install nodejs -y
-RUN node -v
-RUN npm -v
-
 RUN apt-get install nginx -y
-RUN nginx -v
+RUN apt-get install python2.7 -y
+RUN apt-get install build-essential -y
+
+RUN npm install -g typescript pm2
+
+
+
+
+
+
 
 RUN git clone https://github.com/greatlakescode/greatlakescode.git
 
 WORKDIR /greatlakescode/app/node_app
 
-#This is an issue with node-gyp, it doesn't work with Python 3+.
-RUN apt-get install python2.7 -y
-RUN apt-get install build-essential -y
-#RUN npm install bcrypt
+#install to speed up updates.
 RUN pwd && npm install
-
-
-RUN npm install -g pm2
-
 WORKDIR /greatlakescode/app/react_frontend
-
-
+#RUN npm run build
 RUN npm install
-RUN npm run build
-
-RUN npm install -g typescript
 
 ENV GREATLAKESCODE_EMAIL_BASED_AUTH_JWT_SECRET test
 ENV GREATLAKESCODE_STEAM_API_KEY test
@@ -72,37 +96,10 @@ RUN ln -s /etc/nginx/sites-available/localhost.conf /etc/nginx/sites-enabled/
 #RUN systemctl enable nginx
 
 
-RUN npm install -g typescript
-
-RUN apt-get install wget
-RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | apt-key add -
-RUN echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.2.list
-RUN apt-get update
 
 
-#avoid tz interaction
-ENV TZ=America/New_York
-RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
 
-RUN apt-get install -y tzdata
 
-#Configuring tzdata
-#------------------
-#
-#Please select the geographic area in which you live. Subsequent configuration
-#questions will narrow this down by presenting a list of cities, representing
-#the time zones in which they are located.
-#
-#  1. Africa      4. Australia  7. Atlantic  10. Pacific  13. Etc
-#  2. America     5. Arctic     8. Europe    11. SystemV
-#  3. Antarctica  6. Asia       9. Indian    12. US
-#Geographic area: 12
-
-#RUN timedatectl list-timezones
-#RUN cat /etc/timezone
-RUN apt-get install -y mongodb-org
-
-RUN mkdir -p /data/db
 
 
 EXPOSE 80
