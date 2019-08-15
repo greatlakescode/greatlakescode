@@ -39,6 +39,8 @@ WORKDIR /greatlakescode/app/react_frontend
 RUN npm install
 RUN npm run build
 
+RUN npm install -g typescript
+
 ENV GREATLAKESCODE_EMAIL_BASED_AUTH_JWT_SECRET test
 ENV GREATLAKESCODE_STEAM_API_KEY test
 ENV OPEN_WEATHER_MAP_API_KEY test
@@ -61,6 +63,13 @@ ENV GREATLAKESCODE_MYSQL_ADMIN_PASSWORD=REPLACE_ME_PASSWORD
 
 #nginx configuration for serving frontend
 #TODO can probably remove nginx from this. it is not required for node just php?
+
+COPY localhost.conf /etc/nginx/sites-available/localhost.conf
+RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/
+
+RUN systemctl start nginx
+RUN systemctl enable nginx
+
 
 
 COPY start.sh /start.sh
@@ -98,3 +107,5 @@ ENTRYPOINT ["/start.sh"]
 
 #docker build -t greatlakescode-node .
 #docker rm -f greatlakescode-node && docker run -dP -p 80:80 -p 443:443  --name greatlakescode-node greatlakescode-node:latest
+
+#docker exec -it greatlakescode-node /bin/bash

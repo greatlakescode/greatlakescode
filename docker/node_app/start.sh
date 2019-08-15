@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
 
-whoami
+#whoami
 
+/greatlakescode/app/devops/deploy_scripts/start.sh
+#/greatlakescode/app/devops/deploy_scripts/start_api.sh
 
-
-tail -f
+#tail -f
+#
+#
+#/bin/bash
