@@ -103,8 +103,11 @@ RUN mkdir -p /public
 
 
 
-
+#react frontend
 EXPOSE 80
+#node api.
+EXPOSE 3000
+#mongodb
 EXPOSE 27017
 
 
