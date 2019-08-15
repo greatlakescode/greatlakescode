@@ -61,8 +61,7 @@ WORKDIR /greatlakescode/app/node_app
 
 #install to speed up updates.
 RUN pwd && npm install
-WORKDIR /greatlakescode/app/react_frontend
-#RUN npm run build
+
 RUN npm install
 
 ENV GREATLAKESCODE_EMAIL_BASED_AUTH_JWT_SECRET test
@@ -96,6 +95,9 @@ RUN ln -s /etc/nginx/sites-available/localhost.conf /etc/nginx/sites-enabled/
 #RUN systemctl enable nginx
 
 
+WORKDIR /greatlakescode/app/react_frontend
+#prebuilt so something is available immediately
+RUN npm run build
 
 RUN mkdir -p /public
 
