@@ -14,17 +14,24 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 
 
 RUN apt-get install nodejs -y
-RUN node -V
+RUN node -v
 RUN npm -v
 
-
+RUN apt-get install nginx -y
 RUN nginx -v
 
 RUN git clone https://github.com/greatlakescode/greatlakescode.git
 
-RUN cd /greatlakescode/app/node_app
+WORKDIR /greatlakescode/app/node_app
 
-RUN npm install
+#This is an issue with node-gyp, it doesn't work with Python 3+.
+RUN apt-get install python2.7 -y
+RUN apt-get install build-essential -y
+#RUN npm install bcrypt
+RUN pwd && npm install
+
+
+RUN npm install -g pm2
 
 
 #RUN apt-get update
