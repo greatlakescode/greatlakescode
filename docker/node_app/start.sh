@@ -3,6 +3,9 @@
 echo "STARTING v 1.0"
 whoami
 
+echo "mongodb start"
+service mongod start
+
 echo "start nginx"
 service nginx start
 

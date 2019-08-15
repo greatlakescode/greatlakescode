@@ -74,6 +74,11 @@ RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/
 
 RUN npm install -g typescript
 
+RUN apt-get install wget
+RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | apt-key add -
+RUN echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.2.list
+RUN apt-get update
+RUN apt-get install -y mongodb-org
 
 
 
@@ -113,10 +118,12 @@ ENTRYPOINT ["/start.sh"]
 
 
 #docker build -t greatlakescode-node .
-#docker rm -f greatlakescode-node && docker run -dP -p 80:80 -p 443:443  --name greatlakescode-node greatlakescode-node:latest
+#docker rm -f greatlakescode-node && docker run -dP -p 80:80 -p 443:443  --name greatlakescode-node greatlakescode-node:latest && docker logs greatlakescode-node -f
 
 #not usable for a little bit.
 #docker logs greatlakescode-node -f
 
 
 #docker exec -it greatlakescode-node /bin/bash
+
+#2|greatlakescode_backup_2  | MongoNetworkError: failed to connect to server [localhost:27017] on first connect [Error: connect ECONNREFUSED 127.0.0.1:27017
