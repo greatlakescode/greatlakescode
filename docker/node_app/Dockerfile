@@ -156,5 +156,3 @@ ENTRYPOINT ["/start.sh"]
 
 
 #docker exec -it greatlakescode-node /bin/bash
-
-#2|greatlakescode_backup_2  | MongoNetworkError: failed to connect to server [localhost:27017] on first connect [Error: connect ECONNREFUSED 127.0.0.1:27017
