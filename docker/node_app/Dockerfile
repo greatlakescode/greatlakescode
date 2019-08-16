@@ -134,6 +134,9 @@ RUN mkdir -p  /run/php/
 COPY www.conf /etc/php/7.2/fpm/pool.d/www.conf
 
 
+WORKDIR /kaneesha_wordpress/wordpress-5.2.2
+RUN chown www-data:www-data wordpress -R
+
 
 
 
@@ -187,7 +190,7 @@ ENTRYPOINT ["/start.sh"]
 
 
 #docker build -t greatlakescode-node .
-#docker rm -f greatlakescode-node && docker run --mount source=kaneesha_wordpress,target=/kaneesha_wordpress/wordpress-5.2.2/wordpress --mount source=mongo,target=/data --mount source=mysql,target=/var/lib/mysql -dP -p 3001:80 -p 27017:27017 -p 3000:3000 -p 3306:3306 -p 8080:8080  --name greatlakescode-node greatlakescode-node:latest && docker logs greatlakescode-node -f
+#docker rm -f greatlakescode-node && docker run --mount source=kaneesha_wordpress,target=/kaneesha_wordpress/wordpress-5.2.2/wordpress --mount source=mongo,target=/data --mount source=mysql,target=/var/lib/mysql -dP -p 3001:80 -p 27017:27017 -p 3000:3000 -p 3306:3306  -p 80:80 -p 8080:8080  --name greatlakescode-node greatlakescode-node:latest && docker logs greatlakescode-node -f
 
 
 #docker run --mount source=mongo,target=/data --mount source=mysql,target=/var/lib/mysql -dP -p 3306:3306  --name greatlakescode-node greatlakescode-node:latest && docker logs greatlakescode-node -f
