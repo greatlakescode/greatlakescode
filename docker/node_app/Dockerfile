@@ -122,6 +122,7 @@ RUN apt-get install php -y
 RUN apt-get install php-fpm -y
 RUN apt-get install php-fpm php-mysql -y
 RUN apt-get install nano -y
+RUN apt-get install iputils-ping -y
 
 COPY wp.conf /etc/nginx/sites-available/wp.conf
 RUN ln -s /etc/nginx/sites-available/wp.conf /etc/nginx/sites-enabled/
@@ -136,6 +137,11 @@ COPY www.conf /etc/php/7.2/fpm/pool.d/www.conf
 
 WORKDIR /kaneesha_wordpress/wordpress-5.2.2
 RUN chown www-data:www-data wordpress -R
+#RUN chown -R www-data:www-data /usr/share/nginx/html/
+
+#todo remove
+#RUN chmod -R 777 /usr/share/nginx/html/
+
 
 
 
