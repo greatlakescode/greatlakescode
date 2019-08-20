@@ -143,6 +143,17 @@ RUN chown www-data:www-data wordpress -R
 #RUN chmod -R 777 /usr/share/nginx/html/
 
 
+#TODO add kh.russjohnsonio.icu to /etc/hosts
+#127.0.0.1       localhost kh.russjohnsonio.icu
+#::1     localhost ip6-localhost ip6-loopback
+#fe00::0 ip6-localnet
+#ff00::0 ip6-mcastprefix
+#ff02::1 ip6-allnodes
+#ff02::2 ip6-allrouters
+#172.17.0.2      41e55ac4e164
+
+RUN echo "127.0.0.1 kh.russjohnsonio.icu" >> /etc/hosts
+
 
 
 
