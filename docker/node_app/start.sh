@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo "update hosts"
+echo "127.0.0.1 kh.russjohnsonio.icu" >> /etc/hosts
+
 echo "STARTING v 1.0"
 whoami
 

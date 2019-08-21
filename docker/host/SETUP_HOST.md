@@ -1,3 +1,8 @@
+#No nginx
+
+#No listening on port 80
+
+
  apt-get install nginx -y
 
 

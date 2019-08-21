@@ -152,10 +152,13 @@ RUN chown www-data:www-data wordpress -R
 #ff02::2 ip6-allrouters
 #172.17.0.2      41e55ac4e164
 
-RUN echo "127.0.0.1 kh.russjohnsonio.icu" >> /etc/hosts
+#RUN echo "127.0.0.1 kh.russjohnsonio.icu" >> /etc/hosts
+
+#https://stackoverflow.com/questions/38302867/how-to-update-etc-hosts-file-in-docker-image-during-docker-build
+#CMD echo "127.0.0.1 kh.russjohnsonio.icu" >> /etc/hosts; supervisord -n;
 
 
-
+EXPOSE 443
 
 #react frontend
 EXPOSE 80
@@ -207,7 +210,7 @@ ENTRYPOINT ["/start.sh"]
 
 
 #docker build -t greatlakescode-node .
-#docker rm -f greatlakescode-node && docker run --mount source=kaneesha_wordpress,target=/kaneesha_wordpress/wordpress-5.2.2/wordpress --mount source=mongo,target=/data --mount source=mysql,target=/var/lib/mysql -dP -p 3030:80 -p 27017:27017 -p 3000:3000 -p 3306:3306  -p 8080:8080  --name greatlakescode-node greatlakescode-node:latest && docker logs greatlakescode-node -f
+#docker rm -f greatlakescode-node && docker run --mount source=kaneesha_wordpress,target=/kaneesha_wordpress/wordpress-5.2.2/wordpress --mount source=mongo,target=/data --mount source=mysql,target=/var/lib/mysql -dP -p 27017:27017 -p 3000:3000 -p 3306:3306  -p 8080:8080 -p 80:80 -p 443:443  --name greatlakescode-node greatlakescode-node:latest && docker logs greatlakescode-node -f
 
 
 #docker run --mount source=mongo,target=/data --mount source=mysql,target=/var/lib/mysql -dP -p 3306:3306  --name greatlakescode-node greatlakescode-node:latest && docker logs greatlakescode-node -f
@@ -219,6 +222,8 @@ ENTRYPOINT ["/start.sh"]
 
 #docker exec -it greatlakescode-node /bin/bash
 
+
+#curl http://kh.russjohnsonio.icu -L -v
 
 
 #docker rm -f greatlakescode-node && docker run --mount source=mongo,target=/data --mount source=mysql,target=/var/lib/mysql -dP  --name greatlakescode-node greatlakescode-node:latest && docker exec -it greatlakescode-node /bin/bash
