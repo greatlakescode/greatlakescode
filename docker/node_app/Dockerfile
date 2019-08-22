@@ -123,6 +123,9 @@ RUN apt-get install php-fpm -y
 RUN apt-get install php-fpm php-mysql -y
 RUN apt-get install nano -y
 RUN apt-get install iputils-ping -y
+RUN apt-get install postfix -y
+RUN mkfifo /var/spool/postfix/public/pickup
+RUN service postfix restart
 
 COPY wp.conf /etc/nginx/sites-available/wp.conf
 RUN ln -s /etc/nginx/sites-available/wp.conf /etc/nginx/sites-enabled/
