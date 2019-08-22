@@ -11,10 +11,14 @@ echo "stat php-fpm"
 /etc/init.d/php7.2-fpm restart
 
 echo "mysql start"
-service mysql start
-mysql -uroot -e "select 1;"
-mysql -uroot -e "select 1;"
+service mysql restart
+#add password
 #mysql -uroot -e "GRANT ALL ON *.* TO root IDENTIFIED BY 'root'";
+
+mysql -uroot -e "select 1;"
+mysql -uroot -e "select 1;"
+#mysql -uroot -proot -e "create database greatlakescode;"
+
 
 
 #TODO better way of doing this with a service?
