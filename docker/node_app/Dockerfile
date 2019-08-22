@@ -103,29 +103,51 @@ RUN npm run build
 
 
 WORKDIR /
+RUN mkdir kaneesha_wordpress && chown www-data kaneesha_wordpress
 #TODO could have wordpress as its own image. doing this for now.
+USER www-data
 RUN git clone https://github.com/russjohnson09/kaneesha_wordpress.git
+USER root
+
+#RUN export DEBIAN_FRONTEND=noninteractive && apt-get -q -y install mysql-server
+RUN apt-get install php-fpm php php-mysql nano iputils-ping -y
+
+#https://askubuntu.com/questions/762339/mysql-server-installation-stuck-on-root-password
+#ENV MYSQL_PWD Pwd1231
+#RUN echo "mysql-server mysql-server/root_password password $MYSQL_PWD" | debconf-set-selections
+#RUN echo "mysql-server mysql-server/root_password_again password $MYSQL_PWD" | debconf-set-selections
+#RUN apt-get -y install mysql-server
+
+#https://stackoverflow.com/questions/7739645/install-mysql-on-ubuntu-without-a-password-prompt
+#RUN echo "mysql-server-5.5 mysql-server/root_password password root" | debconf-set-selections
+#RUN echo "mysql-server-5.5 mysql-server/root_password_again password root" | debconf-set-selections
+#RUN apt-get -y install mysql-server-5.5
+
+#RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
+
+#RUN mysql -h127.0.0.1 -P3306 -uroot -e"UPDATE mysql.user SET password = PASSWORD('yourpassword') WHERE user = 'root'"
+
+#RUN mysql --version
+#RUN service mysql start && mysql -e "select 1;"
 
 #RUN apt-get install sudo -E apt-get -q -y install mysql-server
-RUN apt-get -q -y install mysql-server
+#RUN apt-get -q -y install mysql-server
 EXPOSE 3306
 
-
-COPY mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
+#TODO fix config
+#COPY mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
 #RUN php -v
 
 #RUN mysql -e "select 1"
 #RUN service mysql start && mysql -e "select 1"
 
 
-RUN apt-get install php -y
-RUN apt-get install php-fpm -y
-RUN apt-get install php-fpm php-mysql -y
-RUN apt-get install nano -y
-RUN apt-get install iputils-ping -y
+#RUN apt-get install php-fpm -y
+#RUN apt-get install php-fpm php-mysql -y
+#RUN apt-get install nano -y
+#RUN apt-get install iputils-ping -y
 
-COPY wp.conf /etc/nginx/sites-available/wp.conf
-RUN ln -s /etc/nginx/sites-available/wp.conf /etc/nginx/sites-enabled/
+
 
 RUN mkdir -p /public
 
@@ -135,13 +157,28 @@ RUN mkdir -p  /run/php/
 COPY www.conf /etc/php/7.2/fpm/pool.d/www.conf
 
 
-WORKDIR /kaneesha_wordpress/wordpress-5.2.2
-RUN chown www-data:www-data wordpress -R
+#WORKDIR /kaneesha_wordpress/wordpress-5.2.2
+#TODO git clone as www-data user so that chown is not needed or something else to set ownership quickly
+#RUN chown www-data:www-data wordpress -R
 #RUN chown -R www-data:www-data /usr/share/nginx/html/
 
 #todo remove
 #RUN chmod -R 777 /usr/share/nginx/html/
 
+#USER mysql
+
+#TODO use volumes for docker-compose
+#RUN mkdir /var/run/mysqld
+#RUN ls /var/run/mysqld -al
+#RUN chown mysql:mysql /var/run/mysqld
+#USER root
+
+#RUN chown mysql:mysql /var/run/mysqld/ -R
+#https://stackoverflow.com/questions/52602293/fail-starting-mysql-in-my-ubuntu-docker
+#usermod -d /var/lib/mysql mysql
+#/etc/init.d/mysql restart
+
+RUN apt-get install mysql-client -y
 
 #TODO add kh.russjohnsonio.icu to /etc/hosts
 #127.0.0.1       localhost kh.russjohnsonio.icu
@@ -171,10 +208,14 @@ EXPOSE 27017
 EXPOSE 8080
 
 
+COPY wp.conf /etc/nginx/sites-available/wp.conf
+RUN ln -s /etc/nginx/sites-available/wp.conf /etc/nginx/sites-enabled/
 COPY start.sh /start.sh
 
 #mongodb volume
 #VOLUME ["/data"]
+
+#RUN service mysql start && mysql -uroot -e "create database greatlakescode;"
 
 
 ENTRYPOINT ["/start.sh"]
@@ -221,7 +262,7 @@ ENTRYPOINT ["/start.sh"]
 
 
 #docker exec -it greatlakescode-node /bin/bash
-
+#docker exec -it node_app_web_1 /bin/bash
 
 #curl http://kh.russjohnsonio.icu -L -v
 
