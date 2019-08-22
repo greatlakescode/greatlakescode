@@ -1,3 +1,7 @@
+#Install
+apt-get install mysql-server
+
+
 #Allow mysql remote connections
 
 ```
@@ -17,7 +21,10 @@ Copy add password and terminate with ;
 CREATE USER 'greatlakescode_admin'@'localhost' IDENTIFIED BY 'password'          ;
 GRANT ALL PRIVILEGES ON *.* TO 'greatlakescode_admin'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION   ;
 
+##Update Password
+ALTER USER 'greatlakescode_admin'@'localhost' IDENTIFIED BY 'newPass';
 
+FLUSH PRIVILEGES;
 
 
 
@@ -38,6 +45,7 @@ CREATE USER 'greatlakescode_app_user'@'localhost' IDENTIFIED BY 'user_password' 
 GRANT ALL PRIVILEGES ON greatlakescode.* TO 'greatlakescode_app_user'@'localhost' IDENTIFIED BY 'password'         ;
 GRANT ALL PRIVILEGES ON greatlakescode.* TO 'greatlakescode_app_user'@'%' IDENTIFIED BY 'password'         ;
 
+FLUSH PRIVILEGES;
 
 
 
