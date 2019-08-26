@@ -18,7 +18,7 @@ printf "$lines You will be asked to update certs. If there are no certs to updat
 printf "\n\n"
 
 #sudo /home/ubuntu/certbot-auto --authenticator webroot -w /home/ubuntu/public --installer nginx
-/home/ubuntu/certbot-auto
+certbot
 sudo service nginx restart
 
 wait

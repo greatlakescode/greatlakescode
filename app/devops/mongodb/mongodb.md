@@ -1,3 +1,8 @@
+
+
+
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+
 #Mac Install
 https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
 

@@ -54,8 +54,8 @@ export default class SteamService
 
         if (!this.steam_api_key)
         {
-            console.log(`steam_api_key required`);
-            throw new Error(`steam_api_key required`);
+            console.log(`steam_api_key required GREATLAKESCODE_STEAM_API_KEY`);
+            throw new Error(`steam_api_key required GREATLAKESCODE_STEAM_API_KEY`);
         }
 
 
