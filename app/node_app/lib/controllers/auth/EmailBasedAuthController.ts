@@ -76,6 +76,8 @@ export default class EmailBasedAuthController
             upload.none(),
             async (req, res) => {
 
+            console.log(`EmailBasedAuthController /login POST`);
+
             //TODO ip for all in req.locals like with user info...
             let ip;
 

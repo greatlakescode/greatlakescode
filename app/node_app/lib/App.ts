@@ -372,6 +372,7 @@ export default class App {
 
         let app = this.app;
         app.all('*', (req, res, next) => {
+            console.log(`app request`,res.method);
             res.header("Access-Control-Allow-Origin", "*");
             // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             res.header("Access-Control-Allow-Headers", "*");

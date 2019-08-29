@@ -41,7 +41,7 @@ class App extends Component {
             >
 
                 <div>
-                    <Navbar/>
+                    <Navbar showDev={false}/>
 
                     <div>
                         <pre>

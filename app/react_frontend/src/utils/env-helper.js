@@ -35,14 +35,14 @@ class EnvHelper {
             obj = {
                 default: {
                     protocol: 'http',
-                    port: 3000, //leave blank if not required?
+                    port: 3005, //leave blank if not required?
                     domain: 'localhost',
                 },
                 notes: {
                     api_endpoint:  '/api/notes-api',
-                    // host: 'http://localhost:3000',
+                    // host: 'http://localhost:3005',
                     protocol: 'http',
-                    port: 3000, //leave blank if not required?
+                    port: 3005, //leave blank if not required?
                     domain: 'localhost',
                 },
                 auth: {
@@ -51,16 +51,16 @@ class EnvHelper {
                     //for its own router. It is uniqueue because all routes
                     //will be dependent on it.
                     api_endpoint:  '/',
-                    // host: 'http://localhost:3000',
+                    // host: 'http://localhost:3005',
                     protocol: 'http',
-                    port: 3000, //leave blank if not required?
+                    port: 3005, //leave blank if not required?
                     domain: 'localhost',
                 },
                 kanban: {
                     api_endpoint:  '/api/kanban',
-                    // host: 'http://localhost:3000',
+                    // host: 'http://localhost:3005',
                     protocol: 'http',
-                    port: 3000, //leave blank if not required?
+                    port: 3005, //leave blank if not required?
                     domain: 'localhost',
                 },
                 base_url: 'http://localhost',
@@ -77,9 +77,9 @@ class EnvHelper {
                 },
                 notes: {
                     api_endpoint:  '/api/notes-api',
-                    // host: 'http://localhost:3000',
+                    // host: 'http://localhost:3005',
                     protocol: 'https',
-                    // port: 3000, //leave blank if not required?
+                    // port: 3005, //leave blank if not required?
                     domain: prodDomainDefault,
                 },
                 auth: {
@@ -88,16 +88,16 @@ class EnvHelper {
                     //for its own router. It is uniqueue because all routes
                     //will be dependent on it.
                     api_endpoint:  '/',
-                    // host: 'http://localhost:3000',
+                    // host: 'http://localhost:3005',
                     protocol: 'https',
-                    // port: 3000, //leave blank if not required?
+                    // port: 3005, //leave blank if not required?
                     domain: prodDomainDefault,
                 },
                 kanban: {
                     api_endpoint:  '/api/kanban',
-                    // host: 'http://localhost:3000',
+                    // host: 'http://localhost:3005',
                     protocol: 'https',
-                    // port: 3000, //leave blank if not required?
+                    // port: 3005, //leave blank if not required?
                     domain: prodDomainDefault,
                 },
             };
