@@ -4,16 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "tslint --project tsconfig.json --format stylish",
-    "test": "nyc mocha",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "test:docs": "mocha --require ts-node/register --require source-map-support/register --full-trace --bail lib/tests/main/secure-docs/secure-docs.test.ts"
+    "lint": "tslint --project tsconfig.json --format stylish"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@istanbuljs/nyc-config-typescript": "^0.1.3",
-    "@types/mocha": "^2.2.48",
     "bcrypt": "^3.0.6",
     "chai": "^4.2.0",
     "coveralls": "^3.0.3",
@@ -38,27 +34,5 @@
     "@types/es6-promise": "^3.3.0",
     "@types/node": "^10.12.18",
     "source-map-support": "^0.5.12"
-  },
-  "nyc": {
-    "extends": "@istanbuljs/nyc-config-typescript",
-    "all": true,
-    "reporter": [
-      "text",
-      "lcov"
-    ],
-    "exclude": [
-      "**/*.spec.js",
-      "test/*",
-      "pm2/*",
-      "coverage/*",
-      "lambda.js",
-      "index.js",
-      "lambda/*"
-    ],
-    "check-coverage": false,
-    "branches": 80,
-    "lines": 80,
-    "functions": 80,
-    "statements": 80
   }
 }
