@@ -69,7 +69,7 @@ class EnvHelper {
             };
         }
         else {
-            let prodDomainDefault = `api.russjohnsonio.icu`;
+            let prodDomainDefault = `api.greatlakescode.us`;
             obj = {
                 default: {
                     protocol: 'https',
