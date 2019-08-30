@@ -14,6 +14,7 @@ import MessageService from "../../utils/MessageService";
 import RequestHelper from "../../utils/RequestHelper";
 import TVSearchComponent from "./TVSearchComponent";
 import MyShowsComponent from "./MyShowsComponent";
+import LoginComponent from "./../LoginComponent";
 
 
 //https://reactjs.org/docs/create-a-new-react-app.html#create-react-app
@@ -106,6 +107,8 @@ export default class TVComponent extends BaseComponent {
 
 
     render() {
+
+        console.log(`TVComponent render start`);
         let match = this.props.match;
 
         if (!this.requestHelper.getIsLoggedIn())

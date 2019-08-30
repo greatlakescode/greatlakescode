@@ -46,6 +46,7 @@ export default class MyShowsComponent extends BaseComponent {
                 this.setState({myShows:data.data});
             }
             else {
+                this.setState({redirect:`/login`});
             }
         }
         catch (e) {
@@ -88,8 +89,8 @@ export default class MyShowsComponent extends BaseComponent {
             return (<Loading/>)
         }
         if (this.state.redirect) {
-            MessageService.warn(`Redirecting to login`);
-            return (<Redirect to='/login' />);
+            MessageService.warn(`Redirecting to ${this.state.redirect}`);
+            return (<Redirect to={this.state.redirect} />);
         }
 
 
